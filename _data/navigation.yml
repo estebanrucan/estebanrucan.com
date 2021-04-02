@@ -4,7 +4,10 @@ main:
     url: /publicaciones/
 
   - title: "Recursos"
-    url: /recursos/    
+    url: /recursos/  
+
+    - title: "Visualizaciones"
+    url: /visualizaciones/      
 
   - title: "Repositorio"
     url: /repositorio/    

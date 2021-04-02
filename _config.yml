@@ -184,6 +184,9 @@ collections:
   repositorio:
     output: true
     permalink: /:collection/:path/
+  visualizaciones:
+    output: true
+    permalink: /:collection/:path/
 
 
 # Defaults
@@ -213,10 +216,19 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  # _repositorio
+    # _repositorio
   - scope:
       path: ""
       type: repositorio
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  # _visualizaciones
+  - scope:
+      path: ""
+      type: visualizaciones
     values:
       layout: single
       author_profile: true
