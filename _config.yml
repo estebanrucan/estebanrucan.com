@@ -181,7 +181,7 @@ collections:
   recursos:
     output: true
     permalink: /:collection/:path/
-  Repositorio:
+  repositorio:
     output: true
     permalink: /:collection/:path/
 
