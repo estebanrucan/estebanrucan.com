@@ -37,7 +37,7 @@ redirect_from:
   * Taller de Cálculo I, [PIMU](https://pimu.mat.uc.cl/) 2019.
   * Programa PIMU B 2021.
   * [Taller de Software Estadístico 2021](https://github.com/estebanrucan/taller-de-software-estadistico).
-  * Profesor de [Dlases particulares CEFMAT 2021](https://www.cefmat.cl/clases).
+  * Profesor de [Clases particulares CEFMAT 2021](https://www.cefmat.cl/clases).
   * [Consejero Académico de Estadística 2021](https://www.cefmat.cl/consejeria-academica).
 
 ## Skills
