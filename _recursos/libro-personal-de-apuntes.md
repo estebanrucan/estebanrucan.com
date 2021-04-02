@@ -9,6 +9,7 @@ location: "Santiago, CHile"
 
 Este libro es una recopilación de materiales de apoyo de R que he realizado en diferentes oportunidades. Realizado con el package `bookdown` de R.
 
-Cita recomendada: Rucán E., 2021. Libro Personal de Apuntes. [online] Libro Personal de Apuntes. Disponible en: <https://estebanrucan.github.io/personal-book/>.
+<a href="/personal-book/" target="_blank">Accede desde aquí</a>
 
-[Accede desde aquí](/personal-book/)
+
+**Cita recomendada**: Rucán E., 2021. Libro Personal de Apuntes [online]. Disponible en: <https://estebanrucan.github.io/personal-book/>.

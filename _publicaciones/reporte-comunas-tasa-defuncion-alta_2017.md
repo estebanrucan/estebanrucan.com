@@ -11,4 +11,5 @@ El fin de este reporte es indicar cuales son las mayores causas de defunción en
 
 <a href="/reporte-comunas-tasa-defuncion-alta_2017/" target="_blank">Accede desde aquí</a>
 
-Recommended citation: Rucán E., 2020. Reporte de las comunas chilenas con mayor tasa de defunciones en el 2017. [online] Disponible en: <https://estebanrucan.github.io/reporte-comunas-tasa-defuncion-alta_2017/> [Accessed 2 April 2021].
+
+**Cita recomendada**: Rucán E., 2020. Reporte de las comunas chilenas con mayor tasa de defunciones en el 2017. [online] Disponible en: <https://estebanrucan.github.io/reporte-comunas-tasa-defuncion-alta_2017/>.
