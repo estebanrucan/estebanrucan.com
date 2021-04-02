@@ -1,5 +1,5 @@
 ---
-title: "Talk 1 on Relevant Topic in Your Field"
+title: "Libro Personal de Apuntes"
 collection: recursos
 type: "recursos"
 permalink: /recursos/libro-personal-de-apuntes
