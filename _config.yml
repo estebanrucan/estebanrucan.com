@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "es-CL"
-title                    : "Esteban Rucán / Sitio Web Personal"
+title                    : "Esteban Rucán"
 title_separator          : "-"
 name                     : &name "Esteban Rucán"
-description              : &description "Estudiante de Estadística en la PUC"
+description              : &description "Sitio Web Personal"
 url                      : https://estebanrucan.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "estebanrucan/estebanrucan.github.io"
@@ -82,12 +82,12 @@ analytics:
 author:
   name             : "Esteban Rucán Carrasco"
   avatar           : "profile.png"
-  bio              : "Your biography for the left-hand sidebar"
+  bio              : "Estudiante de Estadística en la PUC"
   location         : "Santiago, Chile"
   employer         :
   pubmed           : 
   googlescholar    : 
-  email            :
+  email            : "errucan@uc.cl"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -102,14 +102,14 @@ author:
   instagram        : "estebanrucan"
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  linkedin         : "estebanrucan"
   orcid            : 
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : 
+  twitter          : "estebanrucan"
   vine             :
   weibo            :
   xing             :
