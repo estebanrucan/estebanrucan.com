@@ -1,10 +1,10 @@
 # main links links
 main:
-  - title: "Publicaciones"
-    url: /publicaciones/
-
   - title: "Recursos"
     url: /recursos/  
+
+  - title: "Publicaciones"
+    url: /publicaciones/
 
   - title: "Visualizaciones"
     url: /visualizaciones/      
