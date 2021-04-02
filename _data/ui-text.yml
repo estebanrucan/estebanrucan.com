@@ -1,6 +1,6 @@
 # User interface text and labels
 
-# English (default)
+# English
 # -----------------
 en: &DEFAULT_EN
   page                       : "Page"
@@ -48,7 +48,7 @@ en-GB:
 en-AU:
   <<: *DEFAULT_EN
 
-# Spanish
+# Spanish (default)
 # --------------
 es: &DEFAULT_ES
   page                       : "Página"
@@ -56,37 +56,37 @@ es: &DEFAULT_ES
   pagination_next            : "Siguiente"
   breadcrumb_home_label      : "Inicio"
   breadcrumb_separator       : "/"
-  toc_label                  : "Contenidos"
-  ext_link_label             : "Enlace"
-  less_than                  : "menos de"
-  minute_read                : "minuto de lectura"
-  share_on_label             : "Compartir"
+  toc_label                  : "En Esta Página"
+  ext_link_label             : "Enlace Directo"
+  less_than                  : "menos que"
+  minute_read                : "minute read"
+  share_on_label             : "Compartir en"
   meta_label                 :
   tags_label                 : "Etiquetas:"
   categories_label           : "Categorías:"
-  date_label                 : "Actualizado:"
-  comments_label             : "Comentar"
-  comments_title             :
-  more_label                 : "Ver más"
-  related_label              : "Podrías ver también"
-  follow_label               : "Seguir:"
+  date_label                 : "Publicado:"
+  comments_label             : "Deja un comentario"
+  comments_title             : "Comentario"
+  more_label                 : "Aprende más"
+  related_label              : "Similares"
+  follow_label               : ":"
   feed_label                 : "Feed"
-  powered_by                 : "Powered by"
-  website_label              : "Sitio web"
-  email_label                : "Email"
-  recent_posts               : "Entradas recientes"
-  undefined_wpm              : "Parametro words_per_minute (Palabras por minuto) no definido en _config.yml"
-  comment_form_info          :
-  comment_form_comment_label :
-  comment_form_md_info       :
-  comment_form_name_label    :
-  comment_form_email_label   :
-  comment_form_website_label :
-  comment_btn_submit         :
-  comment_btn_submitted      :
-  comment_success_msg        :
-  comment_error_msg          :
-  loading_label              :
+  powered_by                 : "Realizado con"
+  website_label              : "Sitio Web"
+  email_label                : "Correo"
+  recent_posts               : "Post Recientes"
+  undefined_wpm              : "Parametro indefinido 'words_per_minute' en _config.yml"
+  comment_form_info          : "Tu correo no será publicado. Los campos requeridos están marcados"
+  comment_form_comment_label : "Comentario"
+  comment_form_md_info       : "Markdown está soportado."
+  comment_form_name_label    : "Nombre"
+  comment_form_email_label   : "Dirección de correo:"
+  comment_form_website_label : "Sitio web (opcional)"
+  comment_btn_submit         : "Publicar commentario"
+  comment_btn_submitted      : "Publicado"
+  comment_success_msg        : "¡Gracias por comentar! El comentario será exhibido una vez sea aprobado."
+  comment_error_msg          : "Lamentablemente hay un error con tu publicación. Por favor revisa que haz completado todos los campos requeridos e intentalo nuevamente."
+  loading_label              : "Cargando..."
 es-ES:
   <<: *DEFAULT_ES
 es-CO:

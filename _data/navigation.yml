@@ -6,7 +6,7 @@ main:
   - title: "Recursos"
     url: /recursos/  
 
-    - title: "Visualizaciones"
+  - title: "Visualizaciones"
     url: /visualizaciones/      
 
   - title: "Repositorio"
