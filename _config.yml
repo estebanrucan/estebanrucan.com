@@ -209,10 +209,10 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
+  # _recursos
   - scope:
       path: ""
-      type: teaching
+      type: recursos
     values:
       layout: single
       author_profile: true
@@ -221,29 +221,21 @@ defaults:
   # _publications
   - scope:
       path: ""
-      type: publications
+      type: publicaciones
     values:
       layout: single
       author_profile: true
       share: true
       comments: true
-  # _portfolio
+  # _repositorio
   - scope:
       path: ""
-      type: portfolio
+      type: repositorio
     values:
       layout: single
       author_profile: true
       share: true
       comment: true
-  # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
 
 # Sass/SCSS
 sass:
