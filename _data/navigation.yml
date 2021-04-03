@@ -12,5 +12,5 @@ main:
   - title: "Repositorio"
     url: /repositorio/    
     
-  - title: "CV"
-    url: /cv/
+#  - title: "CV"
+#    url: /cv/
