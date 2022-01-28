@@ -4,7 +4,7 @@
 :root {
     --h1          : #130F49;
     --blue        : #34A1CD;
-    --dark-Purple : #55527C;
+    --dark-purple : #55527C;
     --grey        : #B4B2C5;
     --pink        : #EA4C89;
     --circle      : #F4F3FF;
@@ -27,6 +27,11 @@ html, body {
     overflow-x: hidden;
 }
 
+section {
+    font-size: 1.4rem;
+    
+}
+
 
 li {
     list-style: none;
@@ -36,6 +41,10 @@ h1 {
     font-size: 4.5rem;
     color: var(--h1);
     font-weight: bold;
+}
+
+h3 {
+    color: var(--grey);
 }
 
 p {
@@ -85,7 +94,7 @@ a {
 
 .nav-link {
     cursor: pointer;
-    color: var(--dark-Purple);
+    color: var(--dark-purple);
     text-decoration: none;
 }
 
@@ -154,7 +163,7 @@ a {
 }
 
 .header .col-2 img {
-    max-width: 70%;
+    max-width: 60%;
     border-radius: 50%;
 }
 
@@ -166,5 +175,47 @@ a {
 .header p {
     margin: 30px auto;
     text-align: center;
+}
+
+/* Skills */
+
+.title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+    grid-gap: 50px;
+}
+
+.icon-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon-title img {
+    margin-right: 20px;
+}
+
+.icon-title h2 {
+    font-size: 2rem;
+    color: var(--h1);
+}
+
+.grid-box .highlight {
+    color: var(--dark-purple);
+    font-weight: bold;
+}
+
+.grid-box {
+    padding: 30px;
+}
+
+.grid-box:hover {
+    box-shadow: 0 0 30px #0000002f;
+    border-radius: 20px;
 }
 
