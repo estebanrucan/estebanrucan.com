@@ -56,6 +56,7 @@ p {
 
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .ctn {
@@ -75,19 +76,31 @@ a {
     font-weight: bold;
 }
 
-#navbar {
+/* Navbar */
+
+.toggle-btn i {
+    font-size: 3rem;
+    color: var(--dark-purple);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: none;
+}
+
+.navbar {
     width: 100%;
     padding: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
-#navbar ul {
+.navbar ul {
     display: flex;
 }
 
-#navbar li {
+.navbar li {
     margin: 0 30px;
     font-size: 1.8rem;
 }
@@ -99,7 +112,7 @@ a {
     text-decoration: none;
 }
 
-#navbar li:hover {
+.navbar li:hover {
     font-size: 2rem;
     font-weight: bold;
     transform: scale(1.2);
@@ -147,8 +160,10 @@ a {
 /* Header */
 
 .header {
-    margin-top: 0;
+    margin-top: -100px;
     height: 100vh;
+    display: grid;
+    place-items: center;
 }
 
 .header .col-1 {
@@ -199,7 +214,10 @@ a {
 
 .icon-title img {
     margin-right: 20px;
+    width: 20%;
+    max-width: 25%;
 }
+
 
 .icon-title h2 {
     font-size: 2rem;
@@ -242,8 +260,12 @@ a {
     color: var(--dark-purple);
 }
 
-.ctn-title .highlight {
+.ctn-title .highlight a{
     color: var(--pink);
+}
+
+.ctn-title h4 a:hover{
+    font-size: 1.6rem;
 }
 
 #portfolio .grid-wrapper{
@@ -289,4 +311,77 @@ a {
 #portfolio .grid-box:hover .hover {
     transform: scaleX(1);
     transition: transform 0.5s ease;
+}
+
+#portfolio img {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+#portfolio .grid-box:hover img{
+    box-shadow: 0 0 30px #00000050;
+}
+
+/* Contact */
+
+#contact .container {
+    margin-top: 80px;
+    text-align: center;
+    background-color: var(--light-blue);
+    padding: 60px;
+    border-radius: 20px;
+}
+
+#contact .container:hover {
+    box-shadow: 0 0 50px #00000050;
+}
+
+#contact .container h3 {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact h3 a {
+    color: var(--dark-purple);
+}
+
+#contact .fa {
+    margin-right: 30px;
+    font-size: 3rem;
+    color: var(--blue);
+}
+
+#contact .quick-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#contact .quick-links ul {
+    display: flex;
+    gap: 20px;
+}
+
+#contact .quick-links li {
+    margin: 0 20px;
+    color: var(--dark-purple);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#contact .quick-links li:hover, #contact h3 a:hover{
+    font-size: 2rem;
+    font-weight: bold;
+    transform: scale(1.1);
+    transition-duration: 0.1s;
+}
+
+#copyright p{
+    color: var(--dark-purple);
+    font-weight: bold;
+
 }
