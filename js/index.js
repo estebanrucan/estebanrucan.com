@@ -6,13 +6,4 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle_btn.addEventListener("click", () => {
         navbar.classList.toggle("mobile-nav")
     })
-
-    // Animations
-
-    AOS.init({
-        offset: 200,
-        delay: 100,
-        duration: 1000,
-      });
-
 })
