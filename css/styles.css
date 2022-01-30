@@ -21,6 +21,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 
@@ -215,7 +216,7 @@ a {
 .icon-title img {
     margin-right: 20px;
     width: 20%;
-    max-width: 25%;
+    max-width: 50px;
 }
 
 
