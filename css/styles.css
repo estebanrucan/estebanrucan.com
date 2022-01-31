@@ -404,6 +404,11 @@ a {
 
 /* Theme toggle */
 
+.theme {
+    position: absolute;
+    top: 10%;
+    left: 10vw;
+}
 
 .label {
     width: 50px;
