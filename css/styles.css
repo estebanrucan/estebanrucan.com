@@ -124,8 +124,10 @@ a {
     transform: scale(1.4);
 }
 
-#logo {
-    width: 50px;
+.logo {
+    width: 70px;
+    border: none;
+    object-fit: cover;
 }
 
 .container {
