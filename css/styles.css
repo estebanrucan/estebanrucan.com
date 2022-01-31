@@ -386,3 +386,108 @@ a {
     font-weight: bold;
 
 }
+
+/* Scroll to top */
+
+#scrolltop {
+    color: white;
+    background: tomato;
+    padding: 15px;
+    border-radius: 50%;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+/* Theme toggle */
+
+
+.label {
+    width: 50px;
+    height: 20px;
+    background-color: var(--light-blue);
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 1px solid var(--blue);
+}
+
+.label .ball {
+    width: 15px;
+    height: 15px;
+    background: #282f59;
+    border-radius: 50%;
+    margin: 5px;
+    transition: transform 0.5s;
+}
+
+#checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+#checkbox:checked ~ .label {
+    background: #9712D42C;
+    border: none;
+}
+
+#checkbox:checked ~ .label .ball {
+    background-color: whitesmoke;
+    transform: translateX(25px);
+}
+
+/* Dark mode */
+
+:root body.dark {
+    --h1          : whitesmoke;
+    --blue        : #34A1CD;
+    --dark-purple : #CBCDDA;
+    --grey        : #B4B2C5;
+    --pink        : #EA4C89;
+    --circle      : #F4F3FF;
+    --light-pink  : #9712D42C;
+    --light-purple: #ADA8FF;
+    --light-blue  : #282f59;
+}
+
+
+
+body.dark {
+    background: #282f59;
+}
+
+
+body.dark .highlight {
+    color: var(--light-purple);
+}
+
+body.dark .circle {
+    background: var(--light-pink);
+}
+
+body.dark .ctn {
+    background: #55527C;
+    color: whitesmoke;
+}
+
+body.dark .ctn:hover {
+    background: var(--light-purple);
+    border: none;
+    color: var(--h1);
+}
+
+body.dark .hover {
+    background: #55527C;
+}
+
+body.dark #contact .container {
+    background: var(--light-pink);
+}
+
+body.dark #scrolltop {
+    background: var(--pink);
+}

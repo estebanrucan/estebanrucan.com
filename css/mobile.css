@@ -1,4 +1,4 @@
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
     h1 {
         font-size: 3.6rem;
     }
@@ -19,6 +19,13 @@
     .header .col-2 img{
         max-width: 90%;
     }
+    .circle {
+        top: 5%;
+        left: 35%;
+        max-width: 60vw;
+        max-height: 60vw;
+        background: #FFF5F6;
+    }
     .grid-wrapper {
         grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     }
@@ -31,6 +38,11 @@
     #portfolio .title .ctn-title {
         flex-direction: column;
         text-align: left;
+    }
+    #portfolio .rect-bg {
+        max-width: 90vw;
+        top: -10px;
+        left: -10%;
     }
     #contact .container {
         padding: 10px;
@@ -66,6 +78,9 @@
         flex-direction: column;
         display: none;
     }
+    body.dark .navbar {
+        background: #282f59;
+    }
     #nav-list ul {
         flex-direction: column;
     }
@@ -74,6 +89,11 @@
     }
     .mobile-nav {
         display: flex;
+    }
+    .theme {
+        position: absolute;
+        top: 30px;
+        left: 20%;
     }
 
 }
