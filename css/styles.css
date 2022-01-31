@@ -154,10 +154,11 @@ a {
     height: 500px;
     background-color: var(--circle);
     position: absolute;
-    top: -30%;
-    right: -20%;
+    top: 10%;
+    left: 30%;
     border-radius: 50%;
     z-index: -1;
+    animation: circle 10s linear 1s 1 normal;
 }
 
 /* Header */
@@ -497,4 +498,21 @@ body.dark #contact .container {
 
 body.dark #scrolltop {
     background: var(--pink);
+}
+
+/* Animations */
+
+@keyframes circle {
+    from {
+        width: 100px;
+        height: 100px;
+        top: -30%;
+        right: -20%;
+    }
+    to {
+        width: 500px;
+        height: 500px;
+        top: 10%;
+        left: 30%;
+    }
 }
