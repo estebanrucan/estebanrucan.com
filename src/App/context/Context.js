@@ -14,6 +14,33 @@ function AppContextProvider({ children }) {
     rootMargin: "-10%"
   });
 
+  const defaultRootMargin = "-10%";
+
+  const { ref: refHome, inView: inViewHome } = useInView({
+    /* Optional options */
+    rootMargin: defaultRootMargin
+  });
+
+  const { ref: refAbout, inView: inViewAbout } = useInView({
+    /* Optional options */
+    rootMargin: defaultRootMargin
+  });
+
+  const { ref: refSkills, inView: inViewSkills } = useInView({
+    /* Optional options */
+    rootMargin: defaultRootMargin
+  });
+
+  const { ref: refWork, inView: inViewWork } = useInView({
+    /* Optional options */
+    rootMargin: defaultRootMargin
+  });
+
+  const { ref: refContact, inView: inViewContact } = useInView({
+    /* Optional options */
+    rootMargin: defaultRootMargin
+  });
+
   const [servicesModalDisplay, setServicesModalDisplay] = useState(false);
   const [servicesModalContent, setServicesModalContent] = useState({
     title: "",
@@ -35,7 +62,18 @@ function AppContextProvider({ children }) {
     servicesModalContent,
     setServicesModalContent,
     currentWorkCategory, 
-    setCurrentWorkCategory
+    setCurrentWorkCategory,
+    // Active Section
+    refHome,
+    inViewHome,
+    refAbout,
+    inViewAbout,
+    refSkills,
+    inViewSkills,
+    refWork,
+    inViewWork,
+    refContact,
+    inViewContact
   };
 
   return (

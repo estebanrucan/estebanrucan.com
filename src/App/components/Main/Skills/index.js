@@ -1,8 +1,12 @@
 import { StyledSectionSubtitle, StyledSectionTitle } from "../../../../assets/styles";
 import SkillsData from "./Data";
 import { StyledSkillsContainer, StyledSkillsSection, StyledSkillsContent, StyledSkillsTitle, StyledSkillsBox, StyledSkillsGroup } from "./styles";
+import { useContext } from "react";
+import { AppContext } from "../../../context/Context";
 
 function Skills() {
+
+  const {refSkills} = useContext(AppContext);
 
   const DS_GROUP1 = {
     "Python": "Avanzado",
@@ -28,7 +32,7 @@ function Skills() {
 
   return  (
 
-    <StyledSkillsSection id="skills">
+    <StyledSkillsSection id="skills" ref={refSkills}>
       <StyledSectionSubtitle>Mis habilidades</StyledSectionSubtitle>
       <StyledSectionTitle>Mis conocimientos</StyledSectionTitle>
 

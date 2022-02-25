@@ -24,7 +24,7 @@ import { AppContext } from "../../../context/Context";
 
 function Home() {
 
-  const {ref} = useContext(AppContext);
+  const {ref, refHome} = useContext(AppContext);
 
   const SOCIAL_LINKS = {
     "https://www.linkedin.com/in/estebanrucan/": <BsLinkedin />,
@@ -34,7 +34,7 @@ function Home() {
 
 
   return ( 
-    <StyledHome id="home">
+    <StyledHome id="home" ref={refHome}>
       <StyledHomeContainer>
       
         <StyledHomeData>

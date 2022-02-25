@@ -40,7 +40,6 @@
     "react-intersection-observer": "^8.33.1",
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.3",
-    "swiper": "^8.0.6",
     "yup": "^0.32.11"
   }
 }

@@ -9,8 +9,36 @@ import Services from "./components/Main/Services";
 import Work from "./components/Main/Work";
 import Contact from "./components/Main/Contact";
 import AppFooter from "./components/AppFooter";
+import { useContext, useEffect } from "react";
+import { AppContext } from "./context/Context";
 
 function App() {
+
+  const {
+    inViewHome,
+    inViewAbout,
+    inViewSkills,
+    inViewWork,
+    inViewContact,
+    setActiveLink
+  } = useContext(AppContext);
+
+  useEffect(() => {
+
+    if (inViewHome) {
+      setActiveLink("#home");
+    } else if (inViewAbout) {
+      setActiveLink("#about");
+    } else if (inViewSkills) {
+      setActiveLink("#skills");
+    } else if (inViewWork) {
+      setActiveLink("#work");
+    } else if (inViewContact) {
+      setActiveLink("#contact");
+    }
+
+  }, [inViewHome, inViewAbout, inViewSkills, inViewWork, inViewContact]);
+
 
   return (
     <>
@@ -23,7 +51,7 @@ function App() {
         <About />
         <Skills />
         <Services />
-        <Work />
+        <Work/>
         <Contact />
       </Main>
       <AppFooter />

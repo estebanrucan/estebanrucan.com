@@ -2,9 +2,13 @@ import { StyledButton, StyledSectionSubtitle, StyledSectionTitle } from "../../.
 import { StyledAbout, StyledAboutContainer, StyledAboutData, StyledAboutDescription, StyledAboutIconAward, StyledAboutIconBriefcase, StyledAboutIconTrophy, StyledAboutImg, StyledAboutInfo } from "./styles";
 import aboutImg from "../../../../assets/img/about.png";
 import AboutBox from "./Box";
+import { useContext } from "react";
+import { AppContext } from "../../../context/Context";
 
 
 function About() {
+
+  const {refAbout} = useContext(AppContext);
 
   const INFO = [
     ["Certificaciones", "D. Science, HTML y Backend",   <StyledAboutIconAward key={1} />],
@@ -15,7 +19,7 @@ function About() {
 
 
   return ( 
-    <StyledAbout id="about">
+    <StyledAbout id="about" ref={refAbout}>
       <StyledSectionSubtitle>Presentación</StyledSectionSubtitle>
       <StyledSectionTitle>Sobre mi</StyledSectionTitle>
 

@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import NavItem from "./NavItem";
-import { StyledNavBar, StyledNavList, StyledNavLogo, StyledNavMenu } from "./styles";
-import {BiBook, BiBriefcaseAlt2, BiHomeAlt, BiMessageSquareDetail, BiMoon, BiUser} from "react-icons/bi";
+import { StyledNavBar, StyledNavDarkModeToggle, StyledNavList, StyledNavLogo, StyledNavMenu } from "./styles";
+import {BiBook, BiBriefcaseAlt2, BiHomeAlt, BiMessageSquareDetail, BiUser} from "react-icons/bi";
 
 
 function NavBar() {
@@ -36,7 +36,7 @@ function NavBar() {
         </StyledNavList>
       </StyledNavMenu>
 
-      <BiMoon />
+      <StyledNavDarkModeToggle />
 
     </StyledNavBar>
 
