@@ -1,10 +1,13 @@
 /* eslint-disable indent */
 import NavItem from "./NavItem";
-import { StyledNavBar, StyledNavDarkModeToggle, StyledNavList, StyledNavLogo, StyledNavMenu } from "./styles";
+import { StyledNavBar, StyledNavDarkMode, StyledNavLightMode, StyledNavList, StyledNavLogo, StyledNavMenu } from "./styles";
 import {BiBook, BiBriefcaseAlt2, BiHomeAlt, BiMessageSquareDetail, BiUser} from "react-icons/bi";
-
+import { useContext } from "react";
+import { AppContext } from "../../../context/Context";
 
 function NavBar() {
+
+  const { darkMode, setDarkMode } = useContext(AppContext);
 
   const INFO = {
     "#home"   : <BiHomeAlt />,
@@ -20,7 +23,7 @@ function NavBar() {
     
       <StyledNavLogo>Esteban Rucán</StyledNavLogo>
 
-      <StyledNavMenu>
+      <StyledNavMenu darkMode={darkMode}>
         <StyledNavList>
           {
             Object.entries(INFO)
@@ -36,7 +39,11 @@ function NavBar() {
         </StyledNavList>
       </StyledNavMenu>
 
-      <StyledNavDarkModeToggle />
+      {
+        darkMode 
+          ? <StyledNavDarkMode onClick={() => setDarkMode(false)} /> 
+          : <StyledNavLightMode onClick={() => setDarkMode(true)} />   
+      }
 
     </StyledNavBar>
 

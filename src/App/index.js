@@ -20,8 +20,17 @@ function App() {
     inViewSkills,
     inViewWork,
     inViewContact,
-    setActiveLink
+    setActiveLink,
+    darkMode
   } = useContext(AppContext);
+
+
+  useEffect(() => {
+    darkMode 
+      ? document.body.classList.remove("light-mode")
+      : document.body.classList.add("light-mode");
+
+  }, [darkMode]);
 
   useEffect(() => {
 

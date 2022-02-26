@@ -9,7 +9,12 @@ import { AppContext } from "../../../context/Context";
 
 function Work() {
 
-  const {currentWorkCategory, setCurrentWorkCategory, refWork} = useContext(AppContext);
+  const {
+    currentWorkCategory, 
+    setCurrentWorkCategory, 
+    refWork, 
+    darkMode
+  } = useContext(AppContext);
 
   const CATEGORIES = ["Todos", "ML", "DS", "Libros"];
 
@@ -28,7 +33,7 @@ function Work() {
 
   return ( 
     <StyledWorkSection id="work" ref={refWork}>
-      <StyledSectionSubtitle>Mi portafolio</StyledSectionSubtitle>
+      <StyledSectionSubtitle darkMode={darkMode}>Mi portafolio</StyledSectionSubtitle>
       <StyledSectionTitle>Algunos proyectos</StyledSectionTitle>
 
       <StyledWorkFilters>
@@ -39,6 +44,7 @@ function Work() {
                 key      = {cat}
                 onClick  = {() => setCurrentWorkCategory(cat)}
                 isActive = {cat === currentWorkCategory}
+                darkMode = {darkMode}
               >
                 {cat}
               </StyledWorkItem>

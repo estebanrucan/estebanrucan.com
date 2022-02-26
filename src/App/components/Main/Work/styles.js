@@ -17,7 +17,7 @@ const StyledWorkFilters = styled.div`
 const activeStyledWorkItem = props => {
 
   const styles = css`
-    background-color: var(--first-color);
+    background-color: var(--${props.darkMode ? "first-color" : "title-color"});
     color: var(--body-color);
   `;
 

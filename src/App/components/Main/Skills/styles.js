@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container, Grid } from "../../../../assets/styles";
+import { BoxLightMode, Container, Grid } from "../../../../assets/styles";
 import { StyledSection } from "../styles";
 
 
@@ -19,6 +19,7 @@ const StyledSkillsContent = styled.div`
   background-color: var(--container-color);
   padding: 1.5rem;
   border-radius: 1.25rem;
+  ${BoxLightMode(16)}
 `;
 
 const StyledSkillsTitle = styled.h3`

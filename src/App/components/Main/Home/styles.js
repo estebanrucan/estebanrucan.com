@@ -77,14 +77,14 @@ const StyledHomeSocial = styled.div`
     content: "";
     width: 32px;
     height: 2px;
-    background-color: var(--first-color);
+    background-color: var(--${p => p.darkMode ? "first-color" : "title-color"});
     transform: rotate(90deg) translate(16px, 3px);
   }
 `;
 
 const StyledHomeScroll = styled.a`
   position: absolute;
-  color: var(--first-color);
+  color: var(--${p => p.darkMode ? "first-color" : "title-color"});
   right: -1.5rem;
   bottom: 4rem;
   display: grid;

@@ -12,7 +12,7 @@ const StyledFooterContainer = styled.div`
 `;
 
 const StyledFooterTitle = styled.h1`
-  color: var(--body-color);
+  color: var(--${props => props.darkMode ? "body-color" : "title-color"});
   text-align: center;
   margin-bottom: 2rem;
 `;
@@ -34,7 +34,7 @@ const StyledFooterSocial = styled.ul`
 const StyledFooterCopy = styled.span`
   display: block;
   margin-top: 4.5rem;
-  color: var(--container-color);
+  color: var(--${props => props.darkMode ? "container-color" : "title-color"});
   text-align: center;
   font-size: var(--smaller-font-size);
 `;

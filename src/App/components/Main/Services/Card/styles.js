@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import {BiRightArrowAlt} from "react-icons/bi";
+import { BoxLightMode } from "../../../../../assets/styles";
 
 const StyledServicesCard = styled.div`
   background-color: var(--container-color);
   padding: 3rem 1.5rem 1.5rem;
   border-radius: 1rem;
+  ${BoxLightMode(16)}
 `;
 
 const StyledServicesTitle = styled.h3`

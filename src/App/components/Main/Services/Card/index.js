@@ -4,7 +4,11 @@ import { StyledServicesArrow, StyledServicesButton, StyledServicesCard, StyledSe
 
 function ServicesCard({title, description, content}) {
 
-  const {setServicesModalDisplay, setServicesModalContent} = useContext(AppContext);
+  const {
+    setServicesModalDisplay, 
+    setServicesModalContent, 
+    darkMode
+  } = useContext(AppContext);
 
   const handleServicesButtonClick = () => {
     setServicesModalDisplay(true);
@@ -12,7 +16,7 @@ function ServicesCard({title, description, content}) {
   };
 
   return ( 
-    <StyledServicesCard>
+    <StyledServicesCard darkMode={darkMode}>
       <StyledServicesTitle>{title}</StyledServicesTitle>
       <StyledServicesButton
         onClick={handleServicesButtonClick}

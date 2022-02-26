@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import {BiRightArrowAlt} from "react-icons/bi";
+import { BoxLightMode } from "../../../../../assets/styles";
 
 const StyledContactCard = styled.div`
   background-color: var(--container-color);
   padding: 1rem;
   border-radius: .75rem;
   text-align: center;
+  ${BoxLightMode(16)}
 `;
 
 const StyledContactCardTitle = styled.h3`

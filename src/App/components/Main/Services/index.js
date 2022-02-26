@@ -2,8 +2,12 @@ import { StyledSectionSubtitle, StyledSectionTitle } from "../../../../assets/st
 import ServicesCard from "./Card";
 import ServicesModal from "./Modal";
 import { StyledServicesContainer, StyledServicesSection } from "./styles";
+import { useContext } from "react";
+import { AppContext } from "../../../context/Context";
 
 function Services() {
+
+  const {darkMode} = useContext(AppContext);
 
   const INFO = [
     [
@@ -45,7 +49,7 @@ function Services() {
 
   return ( 
     <StyledServicesSection id="services">
-      <StyledSectionSubtitle>Mis servicios</StyledSectionSubtitle>
+      <StyledSectionSubtitle darkMode={darkMode}>Mis servicios</StyledSectionSubtitle>
       <StyledSectionTitle>Lo que ofrezco</StyledSectionTitle>
 
       <StyledServicesContainer>

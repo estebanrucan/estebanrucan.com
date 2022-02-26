@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Container } from "../../../../assets/styles";
-import {BiMoon} from "react-icons/bi";
+import {BiMoon, BiSun} from "react-icons/bi";
 
 
 const StyledNavBar = styled.nav`
@@ -20,14 +20,17 @@ const StyledNavLogo = styled.a`
   }
 `;
 
+
+
 const StyledNavMenu = styled.div`
   position: fixed;
   bottom: 1rem;
-  background-color: hsla(var(--second-hue), 32%, 16%, .8);
+  background-color: hsla(var(--second-hue), 32%, ${p => p.darkMode ? 16 : 90}%, .8);
   width: 90%;
   border-radius: 4rem;
   padding: 1rem 2.25rem;
   backdrop-filter: blur(10px);
+  transition: 0.4s;
 `;
 
 const StyledNavList = styled.ul`
@@ -36,7 +39,18 @@ const StyledNavList = styled.ul`
   align-items: center;
 `;
 
-const StyledNavDarkModeToggle = styled(BiMoon)`
+
+const StyledNavDarkMode = styled(BiSun)`
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: .3s;
+
+  :hover {
+    color: var(--first-color);
+  }
+`;
+
+const StyledNavLightMode = styled(BiMoon)`
   font-size: 1.25rem;
   cursor: pointer;
   transition: .3s;
@@ -53,5 +67,6 @@ export {
   StyledNavLogo, 
   StyledNavMenu, 
   StyledNavList, 
-  StyledNavDarkModeToggle
+  StyledNavDarkMode,
+  StyledNavLightMode
 };

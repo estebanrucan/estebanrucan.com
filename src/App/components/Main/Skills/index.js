@@ -6,7 +6,7 @@ import { AppContext } from "../../../context/Context";
 
 function Skills() {
 
-  const {refSkills} = useContext(AppContext);
+  const {refSkills, darkMode} = useContext(AppContext);
 
   const DS_GROUP1 = {
     "Python": "Avanzado",
@@ -33,12 +33,12 @@ function Skills() {
   return  (
 
     <StyledSkillsSection id="skills" ref={refSkills}>
-      <StyledSectionSubtitle>Mis habilidades</StyledSectionSubtitle>
+      <StyledSectionSubtitle darkMode={darkMode}>Mis habilidades</StyledSectionSubtitle>
       <StyledSectionTitle>Mis conocimientos</StyledSectionTitle>
 
       <StyledSkillsContainer>
         {/*CONTENT 1*/}
-        <StyledSkillsContent>
+        <StyledSkillsContent darkMode={darkMode}>
           <StyledSkillsTitle>Data Science</StyledSkillsTitle>
           <StyledSkillsBox>
             <StyledSkillsGroup>
@@ -68,7 +68,7 @@ function Skills() {
           </StyledSkillsBox>
         </StyledSkillsContent>
         {/*CONTENT 2*/}
-        <StyledSkillsContent>
+        <StyledSkillsContent darkMode={darkMode}>
           <StyledSkillsTitle>Other Abilities</StyledSkillsTitle>
           <StyledSkillsBox>
             {/*GROUP 3*/}

@@ -1,25 +1,26 @@
 import { StyledContactContainer, StyledContactContent, StyledContactInfo, StyledContactSection, StyledContactTitle } from "./styles";
 import {StyledSectionSubtitle, StyledSectionTitle} from "../../../../assets/styles";
 import {BiMailSend} from "react-icons/bi";
-import {BsMessenger} from "react-icons/bs";
+import {BsMessenger, BsWhatsapp} from "react-icons/bs";
 import ContactCard from "./Card";
 import ContactForm from "./Form";
-
 import { useContext } from "react";
 import { AppContext } from "../../../context/Context";
 
+
 function Contact() {
 
-  const {refContact} = useContext(AppContext);
+  const {refContact, darkMode} = useContext(AppContext);
 
   const INFO = [
-    {icon: BiMailSend,  title: "Email",     data: "errucan@uc.cl", link: "mailto:errucan@uc.cl"},
+    {icon: BiMailSend,  title: "Email", data: "errucan@uc.cl", link: "mailto:errucan@uc.cl"},
+    {icon: BsWhatsapp, title:"Whatsapp", data: "Háblame directamente", link: "https://wa.me/56975162103" },
     {icon: BsMessenger, title: "Messenger", data: "estebanrucan",  link: "https://m.me/estebanrucan"},
   ];
 
   return ( 
     <StyledContactSection id="contact" ref={refContact}>
-      <StyledSectionSubtitle>Conversemos</StyledSectionSubtitle>
+      <StyledSectionSubtitle darkMode={darkMode}>Conversemos</StyledSectionSubtitle>
       <StyledSectionTitle>Contáctame</StyledSectionTitle>
 
       <StyledContactContainer>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledFooterSocialLink = styled.a`
-  background-color: var(--body-color);
+  background-color: var(--${props => props.darkMode ? "body-color" : "title-color"});
   color: var(--first-color);
   padding: .25rem;
   border-radius: .25rem;

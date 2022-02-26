@@ -5,8 +5,7 @@ const StyledFooterLi = styled.li`
 `;
 
 const StyledFooterLink = styled.a`
-  color: var(--body-color);
-
+  color: var(--${props => props.darkMode ? "body-color" : "title-color"});
 `;
 
 export {

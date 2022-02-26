@@ -8,7 +8,7 @@ import { AppContext } from "../../../context/Context";
 
 function About() {
 
-  const {refAbout} = useContext(AppContext);
+  const {refAbout, darkMode} = useContext(AppContext);
 
   const INFO = [
     ["Certificaciones", "D. Science, HTML y Backend",   <StyledAboutIconAward key={1} />],
@@ -20,7 +20,7 @@ function About() {
 
   return ( 
     <StyledAbout id="about" ref={refAbout}>
-      <StyledSectionSubtitle>Presentación</StyledSectionSubtitle>
+      <StyledSectionSubtitle darkMode={darkMode}>Presentación</StyledSectionSubtitle>
       <StyledSectionTitle>Sobre mi</StyledSectionTitle>
 
       <StyledAboutContainer>
@@ -45,7 +45,7 @@ function About() {
           Soy Esteban Rucán, estudiante en último año de Estadística en la Pontificia Universidad Católica de Chile. Me gusta innovar a través de distintas herramientas como las Ciencias de Datos, Aprendizaje Profundo y Desarrollo Web. Además, me gusta compartir mis conocimientos y ser una fuente de inspiración.
           </StyledAboutDescription>
 
-          <StyledButton href="#contact">Contáctame</StyledButton>
+          <StyledButton href="#contact" darkMode={darkMode}>Contáctame</StyledButton>
 
         </StyledAboutData>
       </StyledAboutContainer>

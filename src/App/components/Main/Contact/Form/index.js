@@ -3,6 +3,8 @@ import { StyledContactForm, StyledContactFormButton, StyledContactFormDiv, Style
 import {yupResolver} from "@hookform/resolvers/yup"; 
 import * as yup from "yup";
 import { useCallback, useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../../../../context/Context";
 
 
 const schema = yup.object({
@@ -12,6 +14,8 @@ const schema = yup.object({
 });
 
 function ContactForm() {
+
+  const {darkMode} = useContext(AppContext);
 
   const ErrorName = useCallback(type => {
     switch (type) {
@@ -105,7 +109,7 @@ function ContactForm() {
       <StyledErrorMessage>{ErrorContent(errors.contactContent?.type)}</StyledErrorMessage>
       {/* Send */}
       <StyledContactFormSendDiv>
-        <StyledContactFormButton type="submit">Enviar Mensaje</StyledContactFormButton>
+        <StyledContactFormButton type="submit" darkMode={darkMode}>Enviar Mensaje</StyledContactFormButton>
         <StyledContactFormSendMessage messageIsValid={messageIsValid}>
           {messageStatus}
         </StyledContactFormSendMessage>

@@ -59,7 +59,7 @@ const StyledContactFormButton = styled.button`
   ${Button}
   display: inline-block;
   background-color: var(--first-color);
-  color: var(--body-color);
+  color: var(--${p => p.darkMode ? "body-color" : "title-color"});
   padding: .75rem 1rem;
   border-radius: .5rem;
   font-weight: var(--font-medium);
@@ -67,7 +67,7 @@ const StyledContactFormButton = styled.button`
 
   :hover {
     background-color: var(--first-color-alt);
-    color: var(--body-color);
+    color: var(--${p => p.darkMode ? "body-color" : "title-color"});
   }
 `;
 

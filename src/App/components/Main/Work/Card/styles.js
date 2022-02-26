@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {BiRightArrowAlt} from "react-icons/bi";
 import {bounceInUp } from "react-animations";
 import { keyframes } from "styled-components";
+import { BoxLightMode } from "../../../../../assets/styles";
 
 const bounceInUpAnimation = keyframes`${bounceInUp}`;
 
@@ -10,6 +11,7 @@ const StyledWorkCard = styled.div`
   padding: 1rem;
   border-radius: 1rem;
   animation: 1s ${bounceInUpAnimation};
+  ${BoxLightMode(16)}
 `;
 
 const StyledWorkImg = styled.img`

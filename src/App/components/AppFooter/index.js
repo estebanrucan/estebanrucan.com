@@ -3,8 +3,13 @@ import { StyledFooter, StyledFooterContainer, StyledFooterCopy, StyledFooterList
 import { BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
 import FooterSocialLink from "./SocialLink";
 import { StyledFooterLink } from "./MapLink/styles";
+import { useContext } from "react";
+import { AppContext } from "../../context/Context";
+
 
 function AppFooter() {
+
+  const {darkMode} = useContext(AppContext);
 
   const CONTENT = [
     {href: "#about",    content: "Sobre mi"},
@@ -21,7 +26,7 @@ function AppFooter() {
   return ( 
     <StyledFooter>
       <StyledFooterContainer>
-        <StyledFooterTitle>Esteban Rucán</StyledFooterTitle>
+        <StyledFooterTitle darkMode={darkMode}>Esteban Rucán</StyledFooterTitle>
         
         <StyledFooterList>
           {
@@ -51,8 +56,8 @@ function AppFooter() {
           }
         </StyledFooterSocial>
 
-        <StyledFooterCopy>
-        &#169;  
+        <StyledFooterCopy darkMode={darkMode}>
+        &#169; 
           <StyledFooterLink href="https://www.estebanrucan.ml">
             estebanrucan.ml
           </StyledFooterLink>

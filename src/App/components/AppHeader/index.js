@@ -4,10 +4,10 @@ import { StyledHeader } from "./styles";
 
 function AppHeader(props) {
 
-  const {inView} = useContext(AppContext);
+  const {inView, darkMode} = useContext(AppContext);
 
   return ( 
-    <StyledHeader id="header" inView={inView}>
+    <StyledHeader id="header" inView={inView} darkMode={darkMode}>
       {props.children}
     </StyledHeader>
   );

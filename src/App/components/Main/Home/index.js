@@ -24,7 +24,7 @@ import { AppContext } from "../../../context/Context";
 
 function Home() {
 
-  const {ref, refHome} = useContext(AppContext);
+  const {ref, refHome, darkMode} = useContext(AppContext);
 
   const SOCIAL_LINKS = {
     "https://www.linkedin.com/in/estebanrucan/": <BsLinkedin />,
@@ -42,8 +42,15 @@ function Home() {
           <StyledHomeName>Esteban Rucán</StyledHomeName>
           <StyledHomeEducation>Data Science &bull; Machine Learning &bull; Web Development</StyledHomeEducation>
           <StyledHomeButtons>
-            <StyledButtonGhost download="" href={cv} target="_blank">Descargar CV</StyledButtonGhost>
-            <StyledButton href="#about">Sobre mi</StyledButton>
+            <StyledButtonGhost
+              download = ""
+              href     = {cv}
+              target   = "_blank"
+              darkMode = {darkMode}
+            >
+              Descargar CV
+            </StyledButtonGhost>
+            <StyledButton href="#about" darkMode={darkMode}>Sobre mi</StyledButton>
           </StyledHomeButtons>
         </StyledHomeData>
 
@@ -51,7 +58,7 @@ function Home() {
           <StyledHomeImg src={perfilImage}/>
         </StyledHomeHandle>
 
-        <StyledHomeSocial>
+        <StyledHomeSocial darkMode={darkMode}>
           {
             Object.entries(SOCIAL_LINKS)
               .map(([href, icon]) => (
@@ -64,7 +71,7 @@ function Home() {
           }
         </StyledHomeSocial>
 
-        <StyledHomeScroll href="#about">
+        <StyledHomeScroll href="#about" darkMode={darkMode}>
           <StyledHomeScrollIcon />
           <StyledHomeScrollName>Desplazarse</StyledHomeScrollName>
         </StyledHomeScroll>
