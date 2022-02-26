@@ -14,7 +14,7 @@ function Contact() {
 
   const INFO = [
     {icon: BiMailSend,  title: "Email", data: "errucan@uc.cl", link: "mailto:errucan@uc.cl"},
-    {icon: BsInstagram, title:"Instagram", data: "Envíame un Direct.", link: "https://wa.me/56975162103" },
+    {icon: BsInstagram, title:"Instagram", data: "Envíame un Direct.", link: "https://www.instagram.com/estebanrucan/" },
     {icon: BsMessenger, title: "Messenger", data: "estebanrucan",  link: "https://m.me/estebanrucan"},
   ];
 
