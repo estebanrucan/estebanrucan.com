@@ -8,48 +8,43 @@ const ruleForJavascript = {
   options: {
     presets: [
       ["@babel/preset-react", { runtime: "automatic" }],
-      "@babel/preset-env"
+      "@babel/preset-env",
     ],
-  }
+  },
 };
 
 const ruleForStyles = {
   test: /\.css$/,
-  use: ["style-loader", "css-loader"]
+  use: ["style-loader", "css-loader"],
 };
 
-const ruleForImages = {
-  test: /\.(png|jpe?g|gif)$/i,
-  loader: "file-loader",
-  options: {
-    name: "[contenthash].[ext]"
-  }
-};
-
-const ruleForSvg = {
-  test: /\.svg$/,
+const ruleForImages = (isProduction) => ({
+  test: /\.(gif|png|jpe?g|svg)$/i,
   use: [
+    "file-loader",
     {
-      loader: "svg-url-loader",
+      loader: "image-webpack-loader",
       options: {
-        limit: 10000,
+        disable: !isProduction, // webpack@2.x and newer
+        webp: {
+          quality: 90,
+        },
       },
     },
   ],
-};
+});
 
 const ruleForFiles = {
   test: /\.pdf$/,
   loader: "file-loader",
   options: {
-    name: "[name].[ext]"
-  }
+    name: "[name].[ext]",
+  },
 };
 
 module.exports = (env, args) => {
   const { mode } = args;
   const isProduction = mode === "production";
-
 
   return {
     mode: isProduction ? "production" : "development",
@@ -62,15 +57,11 @@ module.exports = (env, args) => {
       rules: [
         ruleForJavascript,
         ruleForStyles,
-        ruleForImages,
         ruleForFiles,
-        ruleForSvg,
-      ]
+        ruleForImages(isProduction),
+      ],
     },
-    plugins: [
-      new HtmlWebpackPlugin({ template: "./src/index.html"}),
-
-    ],
+    plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
     devServer: {
       open: true,
       port: 3000,

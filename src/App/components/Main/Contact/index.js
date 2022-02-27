@@ -1,7 +1,7 @@
 import { StyledContactContainer, StyledContactContent, StyledContactInfo, StyledContactSection, StyledContactTitle } from "./styles";
-import {StyledSectionSubtitle, StyledSectionTitle} from "../../../../assets/styles";
+import {StyledSectionSubtitle, StyledSectionTitle} from "../../../assets/styles";
 import {BiMailSend} from "react-icons/bi";
-import {BsInstagram, BsMessenger, BsWhatsapp} from "react-icons/bs";
+import {BsInstagram, BsMessenger} from "react-icons/bs";
 import ContactCard from "./Card";
 import ContactForm from "./Form";
 import { useContext } from "react";

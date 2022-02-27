@@ -1,4 +1,4 @@
-import { StyledSectionSubtitle, StyledSectionTitle } from "../../../../assets/styles";
+import { StyledSectionSubtitle, StyledSectionTitle } from "../../../assets/styles";
 import SkillsData from "./Data";
 import { StyledSkillsContainer, StyledSkillsSection, StyledSkillsContent, StyledSkillsTitle, StyledSkillsBox, StyledSkillsGroup } from "./styles";
 import { useContext } from "react";

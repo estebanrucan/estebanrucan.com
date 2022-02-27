@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {BiRightArrowAlt} from "react-icons/bi";
-import { BoxLightMode } from "../../../../../assets/styles";
+import { BoxLightMode } from "../../../../assets/styles";
 
 const StyledContactCard = styled.div`
   background-color: var(--container-color);

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container } from "../../../../assets/styles";
+import { Container, devices } from "../../../assets/styles";
 import {BiMoon, BiSun} from "react-icons/bi";
 
 
@@ -9,6 +9,10 @@ const StyledNavBar = styled.nav`
   display        : flex;
   justify-content: space-between;
   align-items    : center;
+
+  @media ${devices.xl} {
+    height: calc(var(--header-height) + 1rem);
+  }
 `;
 
 const StyledNavLogo = styled.a`
@@ -20,8 +24,6 @@ const StyledNavLogo = styled.a`
   }
 `;
 
-
-
 const StyledNavMenu = styled.div`
   position: fixed;
   bottom: 1rem;
@@ -31,6 +33,17 @@ const StyledNavMenu = styled.div`
   padding: 1rem 2.25rem;
   backdrop-filter: blur(10px);
   transition: 0.4s;
+
+  @media ${devices.small} {
+    padding: 1rem 1.5rem;
+  }
+
+  @media ${devices.medium} {
+    width: 328px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
 `;
 
 const StyledNavList = styled.ul`

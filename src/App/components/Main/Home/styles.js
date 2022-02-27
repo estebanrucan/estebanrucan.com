@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Grid } from "../../../../assets/styles";
-import { Container } from "../../../../assets/styles";
+import { devices, Grid } from "../../../assets/styles";
+import { Container } from "../../../assets/styles";
 import { StyledSection } from "../styles";
 import {BiMouse} from "react-icons/bi";
 
@@ -44,6 +44,10 @@ const StyledHomeButtons = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
+
+  @media ${devices.vs} {
+    flex-direction: column;
+  }
   
 `;
 
@@ -60,6 +64,16 @@ const StyledHomeHandle = styled.div`
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
+
+  @media ${devices.small} {
+    width: 220px;
+    height: 300px;
+  }
+
+  @media ${devices.xl} {
+    width: 290px;
+    height: 400px;
+  }
 `;
 
 const StyledHomeImg = styled.img`
@@ -79,6 +93,10 @@ const StyledHomeSocial = styled.div`
     height: 2px;
     background-color: var(--${p => p.darkMode ? "first-color" : "title-color"});
     transform: rotate(90deg) translate(16px, 3px);
+
+    @media ${devices.xl} {
+      transform: rotate(90deg) translate(16px, 0);
+    }
   }
 `;
 

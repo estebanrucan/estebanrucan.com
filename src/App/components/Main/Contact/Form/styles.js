@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { Button } from "../../../../../assets/styles";
+import { Button, devices } from "../../../../assets/styles";
 
 const StyledContactForm = styled.form`
 
@@ -10,6 +10,16 @@ const StyledContactFormDiv = styled.div`
   position: relative;
   margin-top: 2rem;
   height: 4rem;
+
+  @media ${devices.medium} {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media ${devices.large} {
+    width: 400px;
+  }
 `;
 
 const StyledContactFormDivArea = styled(StyledContactFormDiv)`

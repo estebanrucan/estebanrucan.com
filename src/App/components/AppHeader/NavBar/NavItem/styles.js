@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ActiveLink } from "../../../../../assets/styles";
+import { ActiveLink } from "../../../../assets/styles";
 
 const StyledNavItem = styled.li`
 `;

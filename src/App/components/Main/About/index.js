@@ -1,6 +1,6 @@
-import { StyledButton, StyledSectionSubtitle, StyledSectionTitle } from "../../../../assets/styles";
+import { StyledButton, StyledSectionSubtitle, StyledSectionTitle } from "../../../assets/styles";
 import { StyledAbout, StyledAboutContainer, StyledAboutData, StyledAboutDescription, StyledAboutIconAward, StyledAboutIconBriefcase, StyledAboutIconTrophy, StyledAboutImg, StyledAboutInfo } from "./styles";
-import aboutImg from "../../../../assets/img/about.png";
+import aboutImg from "../../../assets/img/about.png";
 import AboutBox from "./Box";
 import { useContext } from "react";
 import { AppContext } from "../../../context/Context";

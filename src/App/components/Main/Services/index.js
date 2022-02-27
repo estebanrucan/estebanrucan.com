@@ -1,4 +1,4 @@
-import { StyledSectionSubtitle, StyledSectionTitle } from "../../../../assets/styles";
+import { StyledSectionSubtitle, StyledSectionTitle } from "../../../assets/styles";
 import ServicesCard from "./Card";
 import ServicesModal from "./Modal";
 import { StyledServicesContainer, StyledServicesSection } from "./styles";

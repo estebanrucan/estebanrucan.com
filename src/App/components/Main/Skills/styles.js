@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BoxLightMode, Container, Grid } from "../../../../assets/styles";
+import { BoxLightMode, Container, devices, Grid } from "../../../assets/styles";
 import { StyledSection } from "../styles";
 
 
@@ -13,6 +13,14 @@ const StyledSkillsContainer = styled.div`
   row-gap: 2rem;
   padding-top: 1rem;
 
+  @media ${devices.medium} {
+    justify-content: center;
+  }
+
+  @media ${devices.xl} {
+    grid-template-columns: repeat(2, 350px);
+  }
+
 `;
 
 const StyledSkillsContent = styled.div`
@@ -20,6 +28,10 @@ const StyledSkillsContent = styled.div`
   padding: 1.5rem;
   border-radius: 1.25rem;
   ${BoxLightMode(16)}
+
+  @media ${devices.medium} {
+    padding: 2rem 4rem;
+  }
 `;
 
 const StyledSkillsTitle = styled.h3`
@@ -35,6 +47,10 @@ const StyledSkillsBox = styled.div`
   display: flex;
   justify-content: space-around;
   column-gap: 2.5rem;
+
+  @media ${devices.small} {
+    column-gap: 1rem;
+  }
 `;
 
 const StyledSkillsGroup = styled.div`

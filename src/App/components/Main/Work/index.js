@@ -1,8 +1,8 @@
-import { StyledSectionSubtitle, StyledSectionTitle } from "../../../../assets/styles";
+import { StyledSectionSubtitle, StyledSectionTitle } from "../../../assets/styles";
 import { StyledWorkContainer, StyledWorkFilters, StyledWorkItem, StyledWorkSection } from "./styles";
-import work1 from "../../../../assets/img/apuntes-personales.png";
-import work2 from "../../../../assets/img/recomendador-cursos-uc.png";
-import work3 from "../../../../assets/img/covid-interactive-explorer.png";
+import work1 from "../../../assets/img/apuntes-personales.png";
+import work2 from "../../../assets/img/recomendador-cursos-uc.png";
+import work3 from "../../../assets/img/covid-interactive-explorer.png";
 import WorkCard from "./Card";
 import { useContext } from "react";
 import { AppContext } from "../../../context/Context";

@@ -1,9 +1,24 @@
 import styled, { css } from "styled-components";
 
+const breakPoint = size => `screen and (min-width: ${size}px)`;
+
+const devices = {
+  vs    : "screen and (max-width: 319px)",
+  small : breakPoint(320),
+  medium: breakPoint(576),
+  large : breakPoint(767),
+  xl    : breakPoint(992),
+};
+
 const Container = css`
   max-width   : 968px;
   margin-left : 1rem;
   margin-right: 1rem;
+
+  @media ${devices.xl} {
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 const ActiveLink = css`
@@ -60,6 +75,10 @@ const StyledSectionTitle = styled.h2`
   font-size: var(--h2-font-size);
   color: var(--first-color);
   margin-bottom: 2rem;
+
+  @media ${devices.xl} {
+    margin-bottom: 3.5rem;
+  }
 `;
 
 
@@ -74,6 +93,7 @@ const BoxLightMode = size => {
 };
 
 
+
 export {
   Container, 
   ActiveLink,
@@ -83,6 +103,7 @@ export {
   StyledButton,
   StyledSectionSubtitle,
   StyledSectionTitle,
-  BoxLightMode
+  BoxLightMode,
+  devices
 };
 

@@ -2,7 +2,7 @@
 import ReactDom from "react-dom";
 import App from "./App";
 import { AppContextProvider } from "./App/context/Context";
-import "./assets/styles/index.css";
+import "./App/assets/styles/index.css";
 
 ReactDom.render(
   <AppContextProvider>

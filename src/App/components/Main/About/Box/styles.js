@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BoxLightMode } from "../../../../../assets/styles";
+import { BoxLightMode, devices } from "../../../../assets/styles";
 
 
 
@@ -8,6 +8,11 @@ const StyledAboutBox = styled.div`
   border-radius: .75rem;
   padding: .75rem .5rem;
   ${BoxLightMode(8)}
+
+  @media ${devices.xl} {
+    text-align: center;
+    padding: 1rem 1.25rem;
+  }
 `;
 
 const StyledAboutTitle = styled.h3`

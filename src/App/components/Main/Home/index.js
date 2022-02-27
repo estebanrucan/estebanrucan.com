@@ -1,4 +1,4 @@
-import { StyledButton, StyledButtonGhost } from "../../../../assets/styles";
+import { StyledButton, StyledButtonGhost } from "../../../assets/styles";
 import { 
   StyledHome,
   StyledHomeButtons,
@@ -16,8 +16,8 @@ import {
 } from "./styles";
 import { BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
 import HomeSocialLink from "./SocialLink";
-import perfilImage from "../../../../assets/img/perfil.png";
-import cv from "../../../../assets/pdf/cv-esteban-rucan.pdf";
+import perfilImage from "../../../assets/img/perfil.png";
+import cv from "../../../assets/pdf/cv-esteban-rucan.pdf";
 import { useContext } from "react";
 import { AppContext } from "../../../context/Context";
 

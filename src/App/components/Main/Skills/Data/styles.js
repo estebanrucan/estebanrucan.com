@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsPatchCheckFill } from "react-icons/bs";
+import { devices } from "../../../../assets/styles";
 
 const StyledSkillsData = styled.div`
   display: flex;
@@ -15,6 +16,10 @@ const StyledSkillsName = styled.h3`
   font-size: var(--normal-font-size);
   font-weight: var(--font-medium);
   line-height: 18px;
+
+  @media ${devices.small} {
+    font-size: var(--small-font-size);
+  }
 `;
 
 const StyledSkillsLevel = styled.span`

@@ -13,12 +13,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^8.10.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react": "^7.29.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "svg-url-loader": "^7.1.1",
+    "image-webpack-loader": "^8.1.0",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
@@ -40,6 +40,7 @@
     "react-intersection-observer": "^8.33.1",
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.3",
+    "trim-newlines": "^4.0.2",
     "yup": "^0.32.11"
   }
 }

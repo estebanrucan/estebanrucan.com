@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Container, Grid} from "../../../assets/styles";
+import {Container, Grid} from "../../assets/styles";
 
 const StyledFooter = styled.footer`
   background-color: var(--first-color);

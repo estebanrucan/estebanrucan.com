@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+import { devices } from "../../../../assets/styles";
 
 const lightMode = props => {
   const styles = css`
@@ -21,6 +22,11 @@ const StyledHomeSocialLink = styled.a`
   :hover {
     background-color: var(--first-color);
     color: #fff;
+  }
+
+  @media ${devices.xl} {
+    padding: .4rem;
+    font-size: 1.25rem;
   }
 `;
 
