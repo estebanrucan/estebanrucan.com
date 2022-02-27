@@ -86,6 +86,14 @@ const StyledErrorMessage = styled.p`
   margin-top: 0.5rem;
   margin-left: 1rem;
   font-size: var(--small-font-size);
+
+  @media ${devices.medium} {
+    margin-left: 23%;
+  }
+
+  @media ${devices.large} {
+    margin-left: 40px;
+  }
 `;
 
 const StyledContactFormSendDiv = styled.div`

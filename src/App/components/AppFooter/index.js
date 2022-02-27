@@ -57,10 +57,7 @@ function AppFooter() {
         </StyledFooterSocial>
 
         <StyledFooterCopy darkMode={darkMode}>
-        &#169; 
-          <StyledFooterLink href="https://www.estebanrucan.ml">
-            estebanrucan.ml
-          </StyledFooterLink>
+        &#169; <StyledFooterLink href="https://www.estebanrucan.ml">estebanrucan.ml</StyledFooterLink>
         . Todos los derechos reservados.
         </StyledFooterCopy>
       </StyledFooterContainer>

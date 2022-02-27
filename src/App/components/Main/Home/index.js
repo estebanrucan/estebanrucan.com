@@ -37,7 +37,7 @@ function Home() {
     <StyledHome id="home" ref={refHome}>
       <StyledHomeContainer>
       
-        <StyledHomeData>
+        <StyledHomeData id="homeData">
           <StyledHomeGreeting ref={ref}>Hola, soy</StyledHomeGreeting>
           <StyledHomeName>Esteban Rucán</StyledHomeName>
           <StyledHomeEducation>Data Science &bull; Machine Learning &bull; Web Development</StyledHomeEducation>
@@ -54,11 +54,12 @@ function Home() {
           </StyledHomeButtons>
         </StyledHomeData>
 
-        <StyledHomeHandle>
+        <StyledHomeHandle id="homeHandle">
           <StyledHomeImg src={perfilImage}/>
         </StyledHomeHandle>
 
-        <StyledHomeSocial darkMode={darkMode}>
+        
+        <StyledHomeSocial id="homeSocial" darkMode={darkMode}>
           {
             Object.entries(SOCIAL_LINKS)
               .map(([href, icon]) => (
@@ -70,8 +71,8 @@ function Home() {
               ))
           }
         </StyledHomeSocial>
-
-        <StyledHomeScroll href="#about" darkMode={darkMode}>
+        
+        <StyledHomeScroll id="homeScroll" href="#about" darkMode={darkMode}>
           <StyledHomeScrollIcon />
           <StyledHomeScrollName>Desplazarse</StyledHomeScrollName>
         </StyledHomeScroll>

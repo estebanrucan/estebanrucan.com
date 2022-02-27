@@ -44,7 +44,7 @@ function ContactForm() {
   const ErrorContent = useCallback(type => {
     switch (type) {
     case "min":
-      return "El mensaje debe tener al menos 5 caráctere.s";
+      return "El mensaje debe tener al menos 5 carácteres.";
     case "max":
       return "El mensaje debe tener a lo más 255 carácteres.";
     default: 
