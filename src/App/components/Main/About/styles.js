@@ -1,4 +1,6 @@
-import { BiAward, BiBriefcase, BiTrophy } from "react-icons/bi";
+import { BiBriefcase } from "react-icons/bi";
+import { AiOutlineBoxPlot } from "react-icons/ai";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import styled, {css} from "styled-components";
 import { Container, devices, Grid } from "../../../assets/styles";
 import { StyledSection } from "../styles";
@@ -65,7 +67,7 @@ const AboutIcon = css`
   margin-bottom: .5rem;
 `;
 
-const StyledAboutIconAward = styled(BiAward)`
+const StyledAboutIconStats = styled(AiOutlineBoxPlot)`
   ${AboutIcon}
 `;
 
@@ -73,7 +75,7 @@ const StyledAboutIconBriefcase = styled(BiBriefcase)`
   ${AboutIcon}
 `;
 
-const StyledAboutIconTrophy= styled(BiTrophy)`
+const StyledAboutIconTeacher= styled(LiaChalkboardTeacherSolid)`
   ${AboutIcon}
 `;
 
@@ -98,8 +100,8 @@ export {
   StyledAboutImg,
   StyledAboutData,
   StyledAboutInfo,
-  StyledAboutIconAward,
+  StyledAboutIconStats,
   StyledAboutIconBriefcase,
-  StyledAboutIconTrophy,
+  StyledAboutIconTeacher,
   StyledAboutDescription
 };

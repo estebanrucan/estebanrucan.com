@@ -1,7 +1,7 @@
 import { StyledContactContainer, StyledContactContent, StyledContactInfo, StyledContactSection, StyledContactTitle } from "./styles";
 import {StyledSectionSubtitle, StyledSectionTitle} from "../../../assets/styles";
 import {BiMailSend} from "react-icons/bi";
-import {BsInstagram, BsMessenger} from "react-icons/bs";
+import {BsLinkedin} from "react-icons/bs";
 import ContactCard from "./Card";
 import ContactForm from "./Form";
 import { useContext } from "react";
@@ -13,9 +13,8 @@ function Contact() {
   const {refContact, darkMode} = useContext(AppContext);
 
   const INFO = [
-    {icon: BiMailSend,  title: "Email", data: "errucan@uc.cl", link: "mailto:errucan@uc.cl"},
-    {icon: BsInstagram, title:"Instagram", data: "Envíame un Direct.", link: "https://www.instagram.com/estebanrucan/" },
-    {icon: BsMessenger, title: "Messenger", data: "estebanrucan",  link: "https://m.me/estebanrucan"},
+    {icon: BiMailSend,  title: "Email", data: "errucan@gmail.com", link: "mailto:errucan@gmail.com"},
+    {icon: BsLinkedin, title:"LinkedIn", data: "Envíame un mensaje por chat", link: "https://www.linkedin.com/in/estebanrucan/" },
   ];
 
   return ( 

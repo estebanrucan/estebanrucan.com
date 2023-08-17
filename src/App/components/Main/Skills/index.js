@@ -16,18 +16,18 @@ function Skills() {
   const DS_GROUP2 = {
     "Data Analysis": "Avanzado",
     "Deep Learning": "Intermedio",
-    "Data Visualization": "Avanzado",
+    "Visualizaciones": "Avanzado",
   };
 
   const OA_GROUP1 = {
-    "Django": "Básico",
-    "FastAPI": "Intermedio",
-    "MySQL": "Intermedio"
+    "Excel": "Avanzado",
+    "Git & GitHub": "Intermedio",
+    "PostgreSQL": "Intermedio"
   };
   const OA_GROUP2 = {
-    "React": "Intermedio",
-    "Javascript": "Intermedio",
-    "HTML": "Intermedio"
+    "Linux": "Intermedio",
+    "Cloud Computing": "Básico",
+    "Docker": "Básico"
   };
 
   return  (
@@ -69,7 +69,7 @@ function Skills() {
         </StyledSkillsContent>
         {/*CONTENT 2*/}
         <StyledSkillsContent darkMode={darkMode}>
-          <StyledSkillsTitle>Other Abilities</StyledSkillsTitle>
+          <StyledSkillsTitle>Otras habilidades</StyledSkillsTitle>
           <StyledSkillsBox>
             {/*GROUP 3*/}
             <StyledSkillsGroup>

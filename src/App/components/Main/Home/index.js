@@ -28,8 +28,7 @@ function Home() {
 
   const SOCIAL_LINKS = {
     "https://www.linkedin.com/in/estebanrucan/": <BsLinkedin />,
-    "https://github.com/estebanrucan/"          : <BsGithub />,
-    "https://www.instagram.com/estebanrucan/": <BsInstagram />
+    "https://github.com/estebanrucan/"          : <BsGithub />
   };
 
 
@@ -40,7 +39,7 @@ function Home() {
         <StyledHomeData id="homeData">
           <StyledHomeGreeting ref={ref}>Hola, soy</StyledHomeGreeting>
           <StyledHomeName>Esteban Rucán</StyledHomeName>
-          <StyledHomeEducation>Data Science &bull; Machine Learning &bull; Web Development</StyledHomeEducation>
+          <StyledHomeEducation>Estadístico UC &bull; Data Scientist &bull; Docente</StyledHomeEducation>
           <StyledHomeButtons>
             <StyledButtonGhost
               download = ""
@@ -50,7 +49,7 @@ function Home() {
             >
               Descargar CV
             </StyledButtonGhost>
-            <StyledButton href="#about" darkMode={darkMode}>Sobre mi</StyledButton>
+            <StyledButton href="#about" darkMode={darkMode}>Sobre mí</StyledButton>
           </StyledHomeButtons>
         </StyledHomeData>
 

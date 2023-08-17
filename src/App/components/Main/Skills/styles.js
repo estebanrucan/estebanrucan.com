@@ -30,7 +30,7 @@ const StyledSkillsContent = styled.div`
   ${BoxLightMode(16)}
 
   @media ${devices.medium} {
-    padding: 2rem 4rem;
+    padding: 2rem 1.5rem;
   }
 `;
 

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import emailjs from '@emailjs/browser';
 import { StyledContactForm, StyledContactFormButton, StyledContactFormDiv, StyledContactFormDivArea, StyledContactFormInput, StyledContactFormSendDiv, StyledContactFormSendMessage, StyledContactFormTag, StyledContactFormTextArea, StyledErrorMessage } from "./styles";
 import {yupResolver} from "@hookform/resolvers/yup"; 
 import * as yup from "yup";
@@ -62,8 +63,13 @@ function ContactForm() {
   const handleValidSubmit = data => {
     console.log(data);
     setMessageIsValid(true);
+    emailjs.send('service_vj0cztj', 'template_jt79fyg', data, '7uc_a7rewEQcbqQCk')
+    .then((result) => {
+      console.log(result.text);
+    }, (error) => {
+      console.log(error.text);
+    });
     setMessageStatus("El mensaje fue enviado con éxito.");
-
   };
 
   const handleInvalidSubmit = errors => {
@@ -73,7 +79,7 @@ function ContactForm() {
   };
 
   return ( 
-    <StyledContactForm action="" onSubmit={handleSubmit(handleValidSubmit, handleInvalidSubmit)}>
+    <StyledContactForm onSubmit={handleSubmit(handleValidSubmit, handleInvalidSubmit)}>
       {/* Name */}
       <StyledContactFormDiv>
         <StyledContactFormTag htmlFor="" anyError={errors.contactName?.message}>Nombre</StyledContactFormTag>

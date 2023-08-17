@@ -1,5 +1,5 @@
 import { StyledButton, StyledSectionSubtitle, StyledSectionTitle } from "../../../assets/styles";
-import { StyledAbout, StyledAboutContainer, StyledAboutData, StyledAboutDescription, StyledAboutIconAward, StyledAboutIconBriefcase, StyledAboutIconTrophy, StyledAboutImg, StyledAboutInfo } from "./styles";
+import { StyledAbout, StyledAboutContainer, StyledAboutData, StyledAboutDescription, StyledAboutIconStats, StyledAboutIconBriefcase, StyledAboutIconTeacher, StyledAboutImg, StyledAboutInfo } from "./styles";
 import aboutImg from "../../../assets/img/about.png";
 import AboutBox from "./Box";
 import { useContext } from "react";
@@ -11,9 +11,9 @@ function About() {
   const {refAbout, darkMode} = useContext(AppContext);
 
   const INFO = [
-    ["Certificaciones", "D. Science, HTML y Backend",   <StyledAboutIconAward key={1} />],
-    ["Ayudantías", "13 Pregrado / 4 Posgrado",    <StyledAboutIconBriefcase key={2} />],
-    ["Liderazgo", "Consejero Académico 2021",   <StyledAboutIconTrophy key={3} />],
+    ["Estadístico UC", "Conocimientos sólidos en estadística",   <StyledAboutIconStats key={1} />],
+    ["Data Scientist", "Experiencia en DataUC y Entel S.A.",    <StyledAboutIconBriefcase key={2} />],
+    ["Docente", "En el Diplomado en Data Science UC",   <StyledAboutIconTeacher key={3} />],
 
   ];
 
@@ -21,7 +21,7 @@ function About() {
   return ( 
     <StyledAbout id="about" ref={refAbout}>
       <StyledSectionSubtitle darkMode={darkMode}>Presentación</StyledSectionSubtitle>
-      <StyledSectionTitle>Sobre mi</StyledSectionTitle>
+      <StyledSectionTitle>Sobre mí</StyledSectionTitle>
 
       <StyledAboutContainer>
         <StyledAboutImg src={aboutImg}/>
@@ -42,7 +42,7 @@ function About() {
           </StyledAboutInfo>
 
           <StyledAboutDescription>
-          Soy Esteban Rucán, estudiante en último año de Estadística en la Pontificia Universidad Católica de Chile. Me gusta innovar a través de distintas herramientas como las Ciencias de Datos, Aprendizaje Profundo y Desarrollo Web. Además, me gusta compartir mis conocimientos y ser una fuente de inspiración.
+          ¡Hola! Soy Esteban Rucán, estudiante de magíster en ciencia de datos UC, estadístico UC y docente. Con experiencia en Entel S.A. y DataUC, aplico estadística e inteligencia artificial para descubrir insights en los datos. Como docente, guío a futuros científicos de datos. Manejo Python y R con un fuerte fundamento en estadística, lo que me permite explorar y comunicar en el mundo de los datos. Mi motivación es la curiosidad y el deseo de impactar a través de la ciencia de datos.
           </StyledAboutDescription>
 
           <StyledButton href="#contact" darkMode={darkMode}>Contáctame</StyledButton>

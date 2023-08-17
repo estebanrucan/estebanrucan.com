@@ -19,8 +19,7 @@ function AppFooter() {
 
   const SOCIAL_LINKS = [
     {href: "https://www.linkedin.com/in/estebanrucan/", icon: <BsLinkedin />},
-    {href: "https://github.com/estebanrucan/",          icon: <BsGithub />},
-    {href: "https://www.instagram.com/estebanrucan/",   icon: <BsInstagram />}
+    {href: "https://github.com/estebanrucan/",          icon: <BsGithub />}
   ];
 
   return ( 
@@ -57,7 +56,7 @@ function AppFooter() {
         </StyledFooterSocial>
 
         <StyledFooterCopy darkMode={darkMode}>
-        &#169; <StyledFooterLink href="https://www.estebanrucan.ml">estebanrucan.ml</StyledFooterLink>
+        &#169; <StyledFooterLink href="https://www.estebanrucan.com">estebanrucan.com</StyledFooterLink>
         . Todos los derechos reservados.
         </StyledFooterCopy>
       </StyledFooterContainer>

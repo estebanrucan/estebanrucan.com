@@ -32,9 +32,11 @@ const StyledServicesModalContent = styled.div`
   background-color: var(--body-color);
   padding: 4.5rem 1.5rem 2.5rem;
   border-radius: 1.5rem;
+  height: 80vh;
+  overflow-y: auto;
 
   @media ${devices.medium} {
-    width: 500px;
+    width: 700px;
     padding: 4.5rem 2.5rem 2.5rem;
   }
 `;
