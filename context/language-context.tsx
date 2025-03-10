@@ -30,7 +30,7 @@ const translations = {
 
     // Experience
     "experience.title": "Experiencia",
-    "experience.job0.title": "Ingeniero Data Scientist",
+    "experience.job0.title": "Data Scientist Engineer",
     "experience.job0.company": "WOM Chile",
     "experience.job0.period": "2024 - Actualidad",
     "experience.job0.achievement1":
@@ -40,7 +40,7 @@ const translations = {
     "experience.job0.achievement3":
       "Optimización de flujos de datos y procesos de análisis para mejorar la eficiencia operativa.",
 
-    "experience.job1.title": "Data Analyst & Engineer",
+    "experience.job1.title": "Data Analyst",
     "experience.job1.company": "IC S.A.",
     "experience.job1.period": "2024",
     "experience.job1.achievement1":
