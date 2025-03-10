@@ -152,7 +152,7 @@ const translations = {
     "experience.job0.achievement3":
       "Optimization of data flows and analysis processes to improve operational efficiency.",
 
-    "experience.job1.title": "Data Analyst & Engineer",
+    "experience.job1.title": "Data Analyst",
     "experience.job1.company": "IC S.A.",
     "experience.job1.period": "2024",
     "experience.job1.achievement1":

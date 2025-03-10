@@ -14,8 +14,7 @@
   --background-end-rgb: 10, 10, 20;
 }
 
-//
-Asegurarnos de que el desplazamiento suave funcione correctamente html {
+html {
   scroll-behavior: smooth;
   height: 100%;
 }
@@ -23,11 +22,15 @@ Asegurarnos de que el desplazamiento suave funcione correctamente html {
 body {
   overflow-x: hidden;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
   min-height: 100%;
 }
 
-/* Asegurarnos de que las secciones tengan suficiente espacio para el desplazamiento */
+/* Secciones con margen al hacer scroll */
 section {
   scroll-margin-top: 2rem;
 }
@@ -36,31 +39,28 @@ section {
   perspective: 1000px;
 }
 
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
   background: rgba(156, 163, 175, 0.5);
   border-radius: 5px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(156, 163, 175, 0.8);
 }
-
 .dark ::-webkit-scrollbar-thumb {
   background: rgba(75, 85, 99, 0.5);
 }
-
 .dark ::-webkit-scrollbar-thumb:hover {
   background: rgba(75, 85, 99, 0.8);
 }
 
+/* Float animation used in existing code */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -72,11 +72,11 @@ section {
     transform: translateY(0px);
   }
 }
-
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
+/* Pulse glow effect */
 @keyframes pulse-glow {
   0%,
   100% {
@@ -86,8 +86,33 @@ section {
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
   }
 }
-
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+/* Glass container class */
+.glassmorphic {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glassmorphic:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(31, 38, 135, 0.2);
+}
+
+/* Extra big floating animations for some elements */
+.animate-float-lg {
+  animation: float-lg 6s ease-in-out infinite;
+}
+@keyframes float-lg {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+}

@@ -16,11 +16,15 @@ export default function LanguageSelector() {
   }
 
   return (
-    <div className="fixed left-6 top-6 z-50">
+    <div className="fixed left-4 md:left-6 top-4 md:top-6 z-50">
       <div className="relative">
         <motion.button
           onClick={toggleDropdown}
-          className="flex items-center space-x-2 rounded-full bg-white p-2 shadow-lg transition-all duration-300 hover:scale-105 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700"
+          className="
+            flex items-center space-x-2 rounded-full bg-white 
+            p-2 shadow-lg transition-all duration-300 hover:scale-105 
+            dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700
+          "
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -40,7 +44,10 @@ export default function LanguageSelector() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute left-0 mt-2 w-40 rounded-lg bg-white shadow-xl dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+              className="
+                absolute left-0 mt-2 w-40 rounded-lg bg-white shadow-xl 
+                dark:bg-gray-800 border border-gray-200 dark:border-gray-700
+              "
             >
               <div className="p-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                 {language === "es" ? "Seleccionar idioma" : "Select language"}
@@ -48,27 +55,39 @@ export default function LanguageSelector() {
               <div className="p-1">
                 <button
                   onClick={() => handleLanguageChange("es")}
-                  className={`flex w-full items-center space-x-2 rounded-md p-2 transition-colors ${
-                    language === "es"
-                      ? "bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-                      : "hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`}
+                  className={`
+                    flex w-full items-center space-x-2 rounded-md p-2 
+                    transition-colors ${
+                      language === "es"
+                        ? "bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+                        : "hover:bg-gray-100 dark:hover:bg-gray-700"
+                    }`}
                 >
                   <div className="relative h-5 w-5 overflow-hidden rounded-full">
-                    <img src="/es-flag.svg" alt="Español" className="h-full w-full object-cover" />
+                    <img
+                      src="/es-flag.svg"
+                      alt="Español"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <span>Español</span>
                 </button>
                 <button
                   onClick={() => handleLanguageChange("en")}
-                  className={`flex w-full items-center space-x-2 rounded-md p-2 transition-colors ${
-                    language === "en"
-                      ? "bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-                      : "hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`}
+                  className={`
+                    flex w-full items-center space-x-2 rounded-md p-2 
+                    transition-colors ${
+                      language === "en"
+                        ? "bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+                        : "hover:bg-gray-100 dark:hover:bg-gray-700"
+                    }`}
                 >
                   <div className="relative h-5 w-5 overflow-hidden rounded-full">
-                    <img src="/gb-flag.svg" alt="English" className="h-full w-full object-cover" />
+                    <img
+                      src="/gb-flag.svg"
+                      alt="English"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <span>English</span>
                 </button>
@@ -80,4 +99,3 @@ export default function LanguageSelector() {
     </div>
   )
 }
-

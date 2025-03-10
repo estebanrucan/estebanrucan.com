@@ -6,20 +6,23 @@ import { motion } from "framer-motion"
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [cursorVariant, setCursorVariant] = useState("default")
-  const [trailPositions, setTrailPositions] = useState<Array<{ x: number; y: number }>>([])
+  const [trailPositions, setTrailPositions] = useState<
+    Array<{ x: number; y: number }>
+  >([])
 
   useEffect(() => {
-    const mouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: e.clientX,
         y: e.clientY,
       })
 
-      // Update trail positions
+      // trailing effect
       setTrailPositions((prev) => {
         const newPositions = [...prev, { x: e.clientX, y: e.clientY }]
-        if (newPositions.length > 5) {
-          return newPositions.slice(-5)
+        // Deja max 4
+        if (newPositions.length > 4) {
+          return newPositions.slice(-4)
         }
         return newPositions
       })
@@ -30,7 +33,7 @@ export default function CustomCursor() {
     const mouseEnterLink = () => setCursorVariant("hover")
     const mouseLeaveLink = () => setCursorVariant("default")
 
-    window.addEventListener("mousemove", mouseMove)
+    window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener("mousedown", mouseDown)
     window.addEventListener("mouseup", mouseUp)
 
@@ -41,10 +44,9 @@ export default function CustomCursor() {
     })
 
     return () => {
-      window.removeEventListener("mousemove", mouseMove)
+      window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("mousedown", mouseDown)
       window.removeEventListener("mouseup", mouseUp)
-
       links.forEach((link) => {
         link.removeEventListener("mouseenter", mouseEnterLink)
         link.removeEventListener("mouseleave", mouseLeaveLink)
@@ -62,8 +64,8 @@ export default function CustomCursor() {
       border: "2px solid rgba(255, 255, 255, 0.8)",
       boxShadow: "0 0 10px rgba(99, 102, 241, 0.5)",
       transition: {
-        type: "spring",
-        mass: 0.6,
+        type: "tween",
+        duration: 0.07,
       },
     },
     hover: {
@@ -75,8 +77,8 @@ export default function CustomCursor() {
       border: "2px solid rgba(255, 255, 255, 0.9)",
       boxShadow: "0 0 15px rgba(99, 102, 241, 0.7)",
       transition: {
-        type: "spring",
-        mass: 0.6,
+        type: "tween",
+        duration: 0.07,
       },
     },
     click: {
@@ -88,8 +90,8 @@ export default function CustomCursor() {
       border: "2px solid rgba(255, 255, 255, 1)",
       boxShadow: "0 0 20px rgba(124, 58, 237, 0.8)",
       transition: {
-        type: "spring",
-        mass: 0.6,
+        type: "tween",
+        duration: 0.07,
       },
     },
   }
@@ -100,12 +102,13 @@ export default function CustomCursor() {
         body {
           cursor: none;
         }
-        a, button {
+        a,
+        button {
           cursor: none;
         }
       `}</style>
 
-      {/* Trail effect */}
+      {/* trailing circles */}
       {trailPositions.map((pos, i) => (
         <motion.div
           key={i}
@@ -117,21 +120,23 @@ export default function CustomCursor() {
             width: 8,
             backgroundColor: "rgba(99, 102, 241, 0.4)",
             boxShadow: "0 0 5px rgba(99, 102, 241, 0.5)",
-            opacity: 0.5 - i * 0.08,
+            opacity: 0.5 - i * 0.1,
           }}
           initial={{ scale: 1 }}
           animate={{ scale: 0 }}
-          transition={{ duration: 0.5, delay: i * 0.05 }}
+          transition={{ duration: 0.3, delay: i * 0.05 }}
         />
       ))}
 
-      {/* Main cursor */}
+      {/* Cursor principal */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-50 hidden rounded-full backdrop-blur-sm md:block"
+        className="
+          pointer-events-none fixed left-0 top-0 z-50 
+          hidden rounded-full backdrop-blur-sm md:block
+        "
         variants={variants}
         animate={cursorVariant}
       />
     </>
   )
 }
-

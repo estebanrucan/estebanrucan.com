@@ -63,6 +63,9 @@ module.exports = {
       animation: {
         "gradient-x": "gradient-x 15s ease infinite",
         "pulse-neural": "pulse-neural 2s ease-in-out infinite",
+        "bg-pan": "bg-pan 8s linear infinite",
+        "float-lg": "float-lg 5s ease-in-out infinite",
+        "bounce-slow": "bounce-slow 3s infinite",
       },
       keyframes: {
         "gradient-x": {
@@ -83,9 +86,28 @@ module.exports = {
             opacity: 0.8,
           },
         },
+        "bg-pan": {
+          "0%": { "background-position": "0% center" },
+          "100%": { "background-position": "-200% center" },
+        },
+        "float-lg": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            transform: "translateY(-30px)",
+          },
+        },
+        "bounce-slow": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-8px)",
+          },
+        },
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
 }
-

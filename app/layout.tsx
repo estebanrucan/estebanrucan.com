@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Esteban Rucán - Machine Learning Engineer",
   description: "CV interactivo de Esteban Rucán, Machine Learning Engineer",
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -18,11 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={inter.className}>{children}</body>
+      <body
+        className={
+          inter.className +
+          " bg-gradient-to-tr from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 " +
+          " transition-colors duration-700 relative overflow-x-hidden"
+        }
+      >
+        {children}
+      </body>
     </html>
   )
 }
-
-
-
-import './globals.css'

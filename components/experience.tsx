@@ -63,20 +63,27 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="relative py-20">
+    <section id="experience" className="relative py-10 sm:py-16">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
           className="mx-auto max-w-4xl"
         >
-          <div className="mb-12 flex items-center justify-center">
-            <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900">
+          <div className="mb-8 sm:mb-12 flex items-center justify-center">
+            <div
+              className="
+                mr-4 flex h-12 w-12 items-center justify-center 
+                rounded-full bg-purple-100 dark:bg-purple-900 shadow-lg
+              "
+            >
               <Briefcase className="h-6 w-6 text-purple-600 dark:text-purple-300" />
             </div>
-            <h2 className="text-3xl font-bold">{t("experience.title")}</h2>
+            <h2 className="text-3xl font-bold text-center">
+              {t("experience.title")}
+            </h2>
           </div>
 
           <div className="relative">
@@ -89,11 +96,22 @@ export default function Experience() {
                 className="relative mb-12 ml-6 last:mb-0"
               >
                 {index < experiences.length - 1 && (
-                  <div className="absolute bottom-0 left-0 top-0 -ml-[9px] w-0.5 bg-gradient-to-b from-purple-500 to-indigo-500 dark:from-purple-400 dark:to-indigo-400" />
+                  <div
+                    className="
+                      absolute bottom-0 left-0 top-0 -ml-[9px] w-0.5 
+                      bg-gradient-to-b from-purple-500 to-indigo-500 
+                      dark:from-purple-400 dark:to-indigo-400
+                    "
+                  />
                 )}
 
                 <motion.div
-                  className="absolute -left-6 top-0 flex h-5 w-5 items-center justify-center rounded-full border-2 border-purple-500 bg-white dark:bg-gray-800"
+                  className="
+                    absolute -left-6 top-0 flex h-5 w-5 
+                    items-center justify-center rounded-full 
+                    border-2 border-purple-500 bg-white 
+                    dark:bg-gray-800
+                  "
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : { scale: 0 }}
                   transition={{
@@ -104,10 +122,28 @@ export default function Experience() {
                   }}
                 />
 
-                <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:bg-gray-800">
-                  <div className="border-b border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-900/50">
+                <div
+                  className="
+                    glassmorphic 
+                    group overflow-hidden rounded-xl 
+                    shadow-lg transition-all duration-500 
+                    hover:-translate-y-2 hover:shadow-2xl
+                    dark:bg-gray-800
+                  "
+                >
+                  <div
+                    className="
+                      border-b border-gray-100 bg-gray-50 p-6 
+                      dark:border-gray-700 dark:bg-gray-900/50
+                    "
+                  >
                     <h3 className="text-xl font-bold">{exp.title}</h3>
-                    <div className="mt-1 flex flex-wrap items-center gap-2 text-gray-600 dark:text-gray-400">
+                    <div
+                      className="
+                        mt-1 flex flex-wrap items-center gap-2 
+                        text-gray-600 dark:text-gray-400
+                      "
+                    >
                       <span>{exp.company}</span>
                       <span className="text-sm">•</span>
                       <span>{exp.period}</span>
@@ -120,8 +156,13 @@ export default function Experience() {
                         <motion.li
                           key={i}
                           initial={{ opacity: 0, x: -20 }}
-                          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                          transition={{ duration: 0.3, delay: index * 0.2 + i * 0.1 + 0.5 }}
+                          animate={
+                            isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                          }
+                          transition={{
+                            duration: 0.3,
+                            delay: index * 0.2 + i * 0.1 + 0.5,
+                          }}
                         >
                           {achievement}
                         </motion.li>
@@ -139,4 +180,3 @@ export default function Experience() {
     </section>
   )
 }
-
