@@ -1,7 +1,6 @@
 "use client"
 
-import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
 
 type Language = "es" | "en"
 
@@ -17,7 +16,7 @@ const translations = {
     "hero.title": "ESTEBAN RUCÁN",
     "hero.subtitle": "Machine Learning Engineer",
     "hero.scroll": "Scroll para explorar",
-    "hero.status": "Buscando nuevas oportunidades",
+    "hero.status": "Enfocado en mi desarrollo profesional",
 
     // About
     "about.title": "Sobre mí",
@@ -130,7 +129,8 @@ const translations = {
     "hero.title": "ESTEBAN RUCÁN",
     "hero.subtitle": "Machine Learning Engineer",
     "hero.scroll": "Scroll to explore",
-    "hero.status": "Looking for new opportunities",
+    "hero.status": "Focused on my professional development",
+    "contact.location.value": "Santiago, Chile",
 
     // About
     "about.title": "About me",
@@ -230,7 +230,6 @@ const translations = {
     // Contact
     "contact.title": "Contact",
     "contact.location": "Location",
-    "contact.location.value": "Santiago, Chile",
     "contact.linkedin": "LinkedIn",
     "contact.github": "GitHub",
 
@@ -257,7 +256,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }
 
   const t = (key: string): string => {
-    return translations[language][key as keyof (typeof translations)[typeof language]] || key
+    return (
+      translations[language][key as keyof typeof translations[typeof language]] ||
+      translations["en"][key as keyof typeof translations["en"]] ||
+      key
+    )
   }
 
   return (
@@ -274,4 +277,3 @@ export const useLanguage = (): LanguageContextType => {
   }
   return context
 }
-

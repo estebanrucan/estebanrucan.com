@@ -1,0 +1,25 @@
+<!-- /public/favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="64" y2="64">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <!-- Fondo circular con gradiente -->
+  <circle cx="32" cy="32" r="32" fill="url(#bgGrad)" />
+  
+  <!-- Cara del robot -->
+  <rect x="16" y="22" width="32" height="20" rx="4" ry="4" fill="white" />
+  
+  <!-- Ojos -->
+  <circle cx="26" cy="32" r="3" fill="#6366F1" />
+  <circle cx="38" cy="32" r="3" fill="#6366F1" />
+  
+  <!-- Boca -->
+  <rect x="26" y="38" width="12" height="2" fill="#6366F1" />
+  
+  <!-- Antena en negro -->
+  <line x1="32" y1="22" x2="32" y2="12" stroke="black" stroke-width="2" stroke-linecap="round" />
+  <circle cx="32" cy="10" r="2" fill="black" />
+</svg>

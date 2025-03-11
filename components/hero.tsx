@@ -39,11 +39,10 @@ export default function Hero() {
       ref={containerRef}
       className="
         relative flex min-h-[calc(100vh-4rem)] flex-col items-center 
-        justify-center
-        px-4 sm:px-6 md:px-8
+        justify-center px-4 sm:px-6 md:px-8
       "
     >
-      {/* Fondo con burbujas animadas */}
+      {/* Fondo animado */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 dark:from-indigo-900/20 dark:to-purple-900/20" />
         <div
@@ -59,23 +58,13 @@ export default function Hero() {
 
       {/* Contenido principal */}
       <div className="relative z-10 flex flex-col items-center text-center">
-        {/* Contenedor para la foto con anillo pulsante */}
+        {/* Contenedor para la foto de perfil */}
         <div className="relative w-48 h-48 sm:w-56 sm:h-56 mb-6 flex items-center justify-center">
           {/* Anillo pulsante */}
-          <div
-            className="
-              absolute inset-0 rounded-full 
-              bg-gradient-to-r from-purple-500 to-indigo-500 
-              blur-xl opacity-40 animate-pulse
-            "
-          />
-          {/* Imagen con mayor espacio arriba (object-[50%_10%]) */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 blur-xl opacity-40 animate-pulse" />
+          {/* Imagen de perfil */}
           <motion.div
-            className="
-              relative w-full h-full rounded-full 
-              overflow-hidden border-4 border-white 
-              dark:border-gray-800 shadow-xl
-            "
+            className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -90,7 +79,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Título y subtítulo (leading-relaxed) */}
+        {/* Título y subtítulo */}
         <motion.h1
           className="
             mb-2 text-4xl sm:text-5xl md:text-6xl 
@@ -133,7 +122,7 @@ export default function Hero() {
           <span>{t("contact.location.value")}</span>
         </motion.div>
 
-        {/* Estado en color rojo */}
+        {/* Estado (usando hero.status) */}
         <motion.div
           className="
             mt-4 inline-block rounded-full 
@@ -145,10 +134,10 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          Enfocado en mi desarrollo profesional
+          {t("hero.status")}
         </motion.div>
 
-        {/* Botones (GitHub / LinkedIn / flecha scroll) */}
+        {/* Botones */}
         <motion.div
           className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-4"
           initial={{ opacity: 0 }}
@@ -217,7 +206,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <ArrowDown className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-            <span className="relative z-10">Seguir explorando</span>
+            <span className="relative z-10">{t("hero.scroll")}</span>
             <div
               className="
                 absolute inset-0 -translate-x-full bg-gradient-to-r

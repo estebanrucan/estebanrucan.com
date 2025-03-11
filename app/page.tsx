@@ -17,35 +17,18 @@ import ParticleBackground from "@/components/particle-background"
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false)
   const { scrollYProgress } = useScroll()
-  // fade out effect en “scroll hint”
+
+  // Transform para la barra de progreso (sin usarlo ya para el scroll-hint)
   const opacity = useTransform(scrollYProgress, [0, 0.05], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.05], [1, 0.9])
 
-  // MODO OSCURO por defecto
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme")
-    if (!savedTheme) {
-      // Si no hay preferencia, forzamos dark
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-      setDarkMode(true)
-    } else if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark")
-      setDarkMode(true)
-    } else {
-      document.documentElement.classList.remove("dark")
-      setDarkMode(false)
-    }
-  }, [])
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
 
-  // CLICK DERECHO deshabilitado
-  useEffect(() => {
-    const handleContextMenu = (e: MouseEvent) => {
-      e.preventDefault()
-    }
-    window.addEventListener("contextmenu", handleContextMenu)
-    return () => {
-      window.removeEventListener("contextmenu", handleContextMenu)
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+      setDarkMode(true)
+      document.documentElement.classList.add("dark")
     }
   }, [])
 
@@ -78,7 +61,7 @@ export default function Home() {
 
         <LanguageSelector />
 
-        {/* Botón toggle dark mode */}
+        {/* Botón para alternar modo oscuro */}
         <button
           onClick={toggleDarkMode}
           className="
@@ -103,23 +86,10 @@ export default function Home() {
           style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
         />
 
-        {/* “Scroll para explorar” - hint */}
-        <motion.div
-          style={{ opacity, scale }}
-          className="
-            fixed bottom-10 right-10 z-40 
-            rounded-full bg-white p-4 shadow-lg 
-            dark:bg-gray-800
-            hidden sm:block
-          "
-        >
-          <p className="text-sm font-medium">Scroll para explorar</p>
-        </motion.div>
+        {/* Eliminado el scroll-hint que aparecía en la esquina inferior */}
 
         <main className="relative">
           <Hero />
-
-          {/* Contenido principal */}
           <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8 my-10 space-y-16">
             <About />
             <Experience />
