@@ -77,7 +77,7 @@ El núcleo de la aplicación es una visualización de nodos interactivos renderi
 ## 👤 Autor
 
 **Esteban Rucán**
-*Data Scientist | AI Engineer*
+*AI Engineer*
 
 ---
 *System Integrity: 100%* | *End of Line.*

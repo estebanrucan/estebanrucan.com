@@ -756,3 +756,94 @@ body.destruct-mode canvas {
         opacity: 0;
     }
 }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+
+    /* Adjust HUD Profile */
+    #hud-profile {
+        top: 10px;
+        left: 10px;
+        max-width: 250px;
+        padding: 10px;
+    }
+
+    #hud-profile h1 {
+        font-size: 18px !important;
+    }
+
+    /* Adjust HUD System */
+    #hud-system {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        padding: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .audio-controls-row {
+        gap: 5px;
+    }
+
+    .ctrl-btn {
+        padding: 4px 8px;
+        min-width: 30px;
+    }
+
+    /* Adjust Boot Screen */
+    .boot-container {
+        width: 90%;
+    }
+
+    .boot-title {
+        font-size: 1.8em;
+    }
+
+    #start-btn {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    /* Adjust Modal */
+    #data-modal {
+        width: 95%;
+        height: 80vh;
+        max-height: 80vh;
+    }
+
+    .modal-header {
+        padding: 15px;
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+
+    /* Adjust Destruct Overlay */
+    .warning-text {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .timer-big {
+        font-size: 80px;
+    }
+
+    /* Adjust Final Screen */
+    .terminal-box {
+        width: 95%;
+    }
+
+    .terminal-body {
+        font-size: 14px;
+        padding: 20px;
+    }
+
+    .cyber-btn {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+}

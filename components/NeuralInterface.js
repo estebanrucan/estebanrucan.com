@@ -329,10 +329,23 @@ export default function NeuralInterface() {
 
             // Responsive Layout Adjustment
             if (width < 768) {
+                // Mobile Layout
                 nodes.forEach(n => {
-                    if (n.id === 'DOCENCIA') { n.baseX = -100; n.baseY = 80; }
-                    if (n.id === 'SKILLS') { n.baseX = 100; n.baseY = 80; }
-                    if (n.id === 'EDUCACION') { n.baseX = 0; n.baseY = 180; }
+                    const original = nodeConfig.find(c => c.id === n.id);
+                    if (n.id === 'PERFIL') { n.baseX = 0; n.baseY = 0; }
+                    if (n.id === 'EXPERIENCIA') { n.baseX = 0; n.baseY = -120; }
+                    if (n.id === 'DOCENCIA') { n.baseX = -90; n.baseY = -40; }
+                    if (n.id === 'SKILLS') { n.baseX = 90; n.baseY = -40; }
+                    if (n.id === 'EDUCACION') { n.baseX = 0; n.baseY = 120; }
+                });
+            } else {
+                // Desktop Layout (Reset)
+                nodes.forEach(n => {
+                    const original = nodeConfig.find(c => c.id === n.id);
+                    if (original) {
+                        n.baseX = original.x;
+                        n.baseY = original.y;
+                    }
                 });
             }
         }
@@ -370,6 +383,29 @@ export default function NeuralInterface() {
                 openNode(active.id);
             }
         });
+
+        // Touch Support
+        canvas.addEventListener('touchstart', e => {
+            if (state !== 'IDLE') return;
+            // e.preventDefault(); // Optional: might block scrolling if needed, but usually better to allow scroll on non-interactive parts. 
+            // However, for this full screen canvas app, preventing default is often good to stop scrolling while interacting.
+            // But if the user wants to scroll the page (if there is content below), we should be careful.
+            // Since body overflow is hidden (from globals.css), we can prevent default safely to stop bounce effects.
+            e.preventDefault();
+
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            const mx = (touch.clientX - rect.left - width / 2) / camera.zoom - camera.x;
+            const my = (touch.clientY - rect.top - height / 2) / camera.zoom - camera.y;
+
+            nodes.forEach(n => {
+                const dist = Math.sqrt((mx - n.x) ** 2 + (my - n.y) ** 2);
+                if (dist < n.size + 30) { // Larger hit area for touch
+                    SfxSys.click();
+                    openNode(n.id);
+                }
+            });
+        }, { passive: false });
 
         // --- CORE FUNCTIONS ---
         function openNode(id) {
@@ -752,10 +788,18 @@ export default function NeuralInterface() {
                         <br />
                         <p className="dimmed">To restore access, manual override is required via secure channel.</p>
                     </div>
-                    <div className="terminal-actions">
-                        <a href="mailto:errucan@gmail.com" className="cyber-btn">
-                            <span className="btn-glitch">INITIATE_RECOVERY_PROTOCOL</span>
-                            <span className="btn-tag">EMAIL_LINK</span>
+                    <div className="terminal-actions" style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+                        <a href="mailto:errucan@gmail.com" className="cyber-btn" title="Email">
+                            <i className="fas fa-envelope" style={{ fontSize: '1.2em' }}></i>
+                            <span className="btn-tag">EMAIL</span>
+                        </a>
+                        <a href="https://github.com/" className="cyber-btn" target="_blank" rel="noopener noreferrer" title="GitHub">
+                            <i className="fab fa-github" style={{ fontSize: '1.2em' }}></i>
+                            <span className="btn-tag">GITHUB</span>
+                        </a>
+                        <a href="https://www.linkedin.com/" className="cyber-btn" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                            <i className="fab fa-linkedin" style={{ fontSize: '1.2em' }}></i>
+                            <span className="btn-tag">LINKEDIN</span>
                         </a>
                     </div>
                 </div>
