@@ -83,11 +83,7 @@ export default function NeuralInterface() {
             <p>
                 Me apasiona la tecnología, y me encuentro en constante aprendizaje para mantenerme actualizado en las últimas tendencias y herramientas de la industria.
             </p>
-            <div style="margin-top:20px; border-top:1px solid #333; padding-top:10px;">
-                    <div style="font-size:0.9em; color:#888;">CONTACTO DIRECTO:</div>
-                    <div style="color:var(--neon-cyan);">errucan@gmail.com | +56 9 75162103</div>
-                    <div style="color:var(--neon-cyan);">Santiago, Chile</div>
-            </div>
+
         `
             },
             "EXPERIENCIA": {
@@ -772,7 +768,7 @@ export default function NeuralInterface() {
                 <div className="warning-text">⚠️ SECURITY BREACH DETECTED ⚠️<br />DATA EXFILTRATION COMPLETE</div>
                 <div style={{ color: '#fff', fontSize: '14px', marginBottom: '10px' }}>INITIATING PROTOCOL ZERO IN:</div>
                 <div className="timer-big" id="countdown-timer">10</div>
-                <button id="btn-mute-destruct">SILENCE ALARM</button>
+                <button id="btn-mute-destruct" className="cyber-btn" style={{ borderColor: 'var(--neon-red)', color: 'var(--neon-red)', marginTop: '20px' }}>SILENCE ALARM</button>
             </div>
 
             {/* FINAL SCREEN (POST-DESTRUCTION) */}
@@ -788,16 +784,13 @@ export default function NeuralInterface() {
                         <br />
                         <p className="dimmed">To restore access, manual override is required via secure channel.</p>
                     </div>
-                    <div className="terminal-actions" style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-                        <a href="mailto:errucan@gmail.com" className="cyber-btn" title="Email">
-                            <i className="fas fa-envelope" style={{ fontSize: '1.2em' }}></i>
-                            <span className="btn-tag">EMAIL</span>
-                        </a>
-                        <a href="https://github.com/" className="cyber-btn" target="_blank" rel="noopener noreferrer" title="GitHub">
+                    <div className="terminal-actions" style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
+
+                        <a href="https://github.com/estebanrucan" className="cyber-btn" target="_blank" rel="noopener noreferrer" title="GitHub">
                             <i className="fab fa-github" style={{ fontSize: '1.2em' }}></i>
                             <span className="btn-tag">GITHUB</span>
                         </a>
-                        <a href="https://www.linkedin.com/" className="cyber-btn" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/estebanrucan" className="cyber-btn" target="_blank" rel="noopener noreferrer" title="LinkedIn">
                             <i className="fab fa-linkedin" style={{ fontSize: '1.2em' }}></i>
                             <span className="btn-tag">LINKEDIN</span>
                         </a>

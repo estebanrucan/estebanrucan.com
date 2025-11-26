@@ -737,6 +737,13 @@ body.destruct-mode canvas {
     letter-spacing: 1px;
 }
 
+.cyber-btn.muted {
+    border-color: #555 !important;
+    color: #555 !important;
+    box-shadow: none !important;
+    opacity: 0.7;
+}
+
 .btn-tag {
     font-size: 10px;
     background: var(--neon-cyan);
