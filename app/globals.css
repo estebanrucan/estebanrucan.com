@@ -19,6 +19,16 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+:focus-visible {
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 2px;
+}
+
+.modal-content,
+.modal-content * {
+    user-select: text;
+}
+
 html,
 body {
     width: 100%;
@@ -99,6 +109,8 @@ body {
 
 #hud-system {
     bottom: 20px;
+    left: 20px;
+    max-width: 400px;
     padding-top: 10px;
     border-top: 1px solid rgba(0, 243, 255, 0.2);
     display: flex;
@@ -308,6 +320,9 @@ body.destruct-mode canvas {
     flex: 1;
     padding: 25px;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
     font-family: 'Rajdhani', sans-serif;
     color: var(--text-main);
     font-size: 16px;
@@ -817,8 +832,14 @@ body.destruct-mode canvas {
     /* Adjust Modal */
     #data-modal {
         width: 95%;
-        height: 80vh;
-        max-height: 80vh;
+        height: 85vh;
+        max-height: 85vh;
+    }
+
+    /* Hit-areas for close buttons on mobile */
+    .close-btn {
+        padding: 8px 14px;
+        font-size: 12px;
     }
 
     .modal-header {

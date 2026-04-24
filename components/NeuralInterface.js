@@ -3,6 +3,33 @@ import { useEffect } from 'react';
 
 export default function NeuralInterface() {
     useEffect(() => {
+        // Track every async handle so we can tear them down on unmount.
+        const timeouts = new Set();
+        const intervals = new Set();
+        let rafId = null;
+        let destroyed = false;
+
+        const safeTimeout = (fn, delay) => {
+            const id = setTimeout(() => {
+                timeouts.delete(id);
+                if (!destroyed) fn();
+            }, delay);
+            timeouts.add(id);
+            return id;
+        };
+        const safeInterval = (fn, delay) => {
+            const id = setInterval(() => {
+                if (destroyed) {
+                    clearInterval(id);
+                    intervals.delete(id);
+                    return;
+                }
+                fn();
+            }, delay);
+            intervals.add(id);
+            return id;
+        };
+
         // --- AUDIO ENGINE (SFX) ---
         const SfxSys = {
             ctx: null,
@@ -49,11 +76,14 @@ export default function NeuralInterface() {
         function toggleAudio() {
             const btn = document.getElementById('btn-play');
             if (bgAudio.paused) {
-                bgAudio.play();
+                const p = bgAudio.play();
+                if (p && typeof p.catch === 'function') p.catch(() => {});
                 btn.innerText = "❚❚";
+                btn.setAttribute('aria-label', 'Pausar audio');
             } else {
                 bgAudio.pause();
                 btn.innerText = "▶";
+                btn.setAttribute('aria-label', 'Reproducir audio');
             }
         }
 
@@ -268,27 +298,29 @@ export default function NeuralInterface() {
 
         function runBootSequence() {
             const logContainer = document.getElementById('boot-log');
-            let totalDelay = 0;
+            if (!logContainer) return;
 
             bootLogs.forEach(log => {
-                totalDelay += Math.random() * 500 + 200; // Randomize slightly
-                setTimeout(() => {
+                safeTimeout(() => {
                     const line = document.createElement('div');
                     line.className = `log-line ${log.type}`;
                     line.innerText = `> ${log.msg}`;
                     logContainer.appendChild(line);
-                    logContainer.scrollTop = logContainer.scrollHeight; // Auto scroll
-                    SfxSys.click(); // Sound effect for typing
-                }, totalDelay);
+                    logContainer.scrollTop = logContainer.scrollHeight;
+                    SfxSys.click();
+                }, log.delay);
             });
 
-            // Show Start Button after logs
-            setTimeout(() => {
+            const lastDelay = bootLogs[bootLogs.length - 1].delay;
+            safeTimeout(() => {
                 const btn = document.getElementById('start-btn');
-                btn.style.opacity = 1;
-                document.querySelector('.boot-status span').innerText = "_READY_TO_LINK";
-                document.querySelector('.boot-status span').classList.add('blink');
-            }, totalDelay + 500);
+                if (btn) btn.style.opacity = 1;
+                const statusSpan = document.querySelector('.boot-status span');
+                if (statusSpan) {
+                    statusSpan.innerText = "_READY_TO_LINK";
+                    statusSpan.classList.add('blink');
+                }
+            }, lastDelay + 500);
         }
 
         function bootSystem() {
@@ -296,18 +328,19 @@ export default function NeuralInterface() {
             SfxSys.init();
             SfxSys.playTone(600, 'sine', 0.5, 0.1); // Boot sound
 
-            // Play Background Audio
-            bgAudio.play().catch(e => console.log("Audio autoplay blocked, user gesture needed earlier"));
+            // Background audio starts muted-ish to match slider default.
+            bgAudio.volume = 0.5;
+            bgAudio.play().catch(() => { /* autoplay blocked — user can press Play */ });
 
             const boot = document.getElementById('boot-screen');
             boot.style.transition = "opacity 1s ease-out";
             boot.style.opacity = 0;
 
-            setTimeout(() => {
+            safeTimeout(() => {
                 boot.style.display = 'none';
                 document.getElementById('ui-layer').style.display = 'block';
-                resize();
                 initNodes();
+                resize();
                 state = 'IDLE';
                 animate();
             }, 1000);
@@ -323,76 +356,79 @@ export default function NeuralInterface() {
             console.log("Nodes initialized:", nodes);
         }
 
+        const mobileLayout = {
+            PERFIL: { x: 0, y: 0 },
+            EXPERIENCIA: { x: 0, y: -120 },
+            DOCENCIA: { x: -90, y: -40 },
+            SKILLS: { x: 90, y: -40 },
+            EDUCACION: { x: 0, y: 120 },
+        };
+
         function resize() {
             width = window.innerWidth;
             height = window.innerHeight;
             canvas.width = width;
             canvas.height = height;
 
-            // Responsive Layout Adjustment
-            if (width < 768) {
-                // Mobile Layout
-                nodes.forEach(n => {
-                    const original = nodeConfig.find(c => c.id === n.id);
-                    if (n.id === 'PERFIL') { n.baseX = 0; n.baseY = 0; }
-                    if (n.id === 'EXPERIENCIA') { n.baseX = 0; n.baseY = -120; }
-                    if (n.id === 'DOCENCIA') { n.baseX = -90; n.baseY = -40; }
-                    if (n.id === 'SKILLS') { n.baseX = 90; n.baseY = -40; }
-                    if (n.id === 'EDUCACION') { n.baseX = 0; n.baseY = 120; }
-                });
-            } else {
-                // Desktop Layout (Reset)
-                nodes.forEach(n => {
-                    const original = nodeConfig.find(c => c.id === n.id);
-                    if (original) {
-                        n.baseX = original.x;
-                        n.baseY = original.y;
-                    }
-                });
-            }
+            const useMobile = width < 768;
+            nodes.forEach(n => {
+                const source = useMobile ? mobileLayout[n.id] : nodeConfig.find(c => c.id === n.id);
+                if (source) {
+                    n.baseX = source.x;
+                    n.baseY = source.y;
+                }
+            });
         }
         window.addEventListener('resize', resize);
 
         // --- INPUT HANDLING ---
-        canvas.addEventListener('mousemove', e => {
+        const onMouseMove = e => {
             if (state !== 'IDLE') return;
             const rect = canvas.getBoundingClientRect();
             const mx = (e.clientX - rect.left - width / 2) / camera.zoom - camera.x;
             const my = (e.clientY - rect.top - height / 2) / camera.zoom - camera.y;
 
-            let hit = false;
+            // Find the closest hovered node (in case hit-areas overlap) to avoid
+            // replaying SFX and setting hover=true on multiple nodes at once.
+            let closest = null;
+            let closestDist = Infinity;
             nodes.forEach(n => {
                 const dist = Math.sqrt((mx - n.x) ** 2 + (my - n.y) ** 2);
-                if (dist < n.size + 15) {
-                    if (!n.hover) {
-                        document.body.style.cursor = 'pointer';
-                        SfxSys.hover();
-                    }
-                    n.hover = true;
-                    hit = true;
-                } else {
-                    n.hover = false;
+                if (dist < n.size + 15 && dist < closestDist) {
+                    closest = n;
+                    closestDist = dist;
                 }
             });
-            if (!hit) document.body.style.cursor = 'default';
-        });
 
-        canvas.addEventListener('click', e => {
+            nodes.forEach(n => {
+                const wasHover = n.hover;
+                n.hover = n === closest;
+                if (n.hover && !wasHover) SfxSys.hover();
+            });
+
+            document.body.style.cursor = closest ? 'pointer' : 'default';
+        };
+        canvas.addEventListener('mousemove', onMouseMove);
+
+        const onMouseLeave = () => {
+            nodes.forEach(n => { n.hover = false; });
+            document.body.style.cursor = 'default';
+        };
+        canvas.addEventListener('mouseleave', onMouseLeave);
+
+        const onCanvasClick = () => {
             if (state !== 'IDLE') return;
             const active = nodes.find(n => n.hover);
             if (active) {
                 SfxSys.click();
                 openNode(active.id);
             }
-        });
+        };
+        canvas.addEventListener('click', onCanvasClick);
 
-        // Touch Support
-        canvas.addEventListener('touchstart', e => {
+        // Touch Support — open the single closest node only.
+        const onTouchStart = e => {
             if (state !== 'IDLE') return;
-            // e.preventDefault(); // Optional: might block scrolling if needed, but usually better to allow scroll on non-interactive parts. 
-            // However, for this full screen canvas app, preventing default is often good to stop scrolling while interacting.
-            // But if the user wants to scroll the page (if there is content below), we should be careful.
-            // Since body overflow is hidden (from globals.css), we can prevent default safely to stop bounce effects.
             e.preventDefault();
 
             const rect = canvas.getBoundingClientRect();
@@ -400,14 +436,21 @@ export default function NeuralInterface() {
             const mx = (touch.clientX - rect.left - width / 2) / camera.zoom - camera.x;
             const my = (touch.clientY - rect.top - height / 2) / camera.zoom - camera.y;
 
+            let closest = null;
+            let closestDist = Infinity;
             nodes.forEach(n => {
                 const dist = Math.sqrt((mx - n.x) ** 2 + (my - n.y) ** 2);
-                if (dist < n.size + 30) { // Larger hit area for touch
-                    SfxSys.click();
-                    openNode(n.id);
+                if (dist < n.size + 30 && dist < closestDist) {
+                    closest = n;
+                    closestDist = dist;
                 }
             });
-        }, { passive: false });
+            if (closest) {
+                SfxSys.click();
+                openNode(closest.id);
+            }
+        };
+        canvas.addEventListener('touchstart', onTouchStart, { passive: false });
 
         // --- CORE FUNCTIONS ---
         function openNode(id) {
@@ -427,7 +470,7 @@ export default function NeuralInterface() {
             document.getElementById('log-msg').innerText = `> DECRYPTING: ${id}...`;
 
             // Modal Open Delay for effect
-            setTimeout(() => {
+            safeTimeout(() => {
                 showModalData(id);
             }, 600);
         }
@@ -444,10 +487,16 @@ export default function NeuralInterface() {
             decryptText(title, data.title);
 
             body.innerHTML = data.content;
+            body.scrollTop = 0;
             modal.classList.add('active');
+
+            // Move focus inside the modal for keyboard/screen reader users.
+            const closeBtn = modal.querySelector('.close-btn');
+            if (closeBtn) closeBtn.focus();
         }
 
         function closeModal() {
+            if (state !== 'MODAL') return;
             document.getElementById('data-modal').classList.remove('active');
 
             // CHECK SELF DESTRUCT CONDITION
@@ -463,7 +512,7 @@ export default function NeuralInterface() {
             camera.ty = 0;
             camera.tz = 1;
 
-            setTimeout(() => { state = 'IDLE'; }, 500);
+            safeTimeout(() => { state = 'IDLE'; }, 500);
         }
 
         // --- SELF DESTRUCT SEQUENCE ---
@@ -483,19 +532,20 @@ export default function NeuralInterface() {
             document.getElementById('sync-status').style.color = 'red';
 
             // Overlay
-            setTimeout(() => {
+            safeTimeout(() => {
                 const overlay = document.getElementById('destruct-overlay');
                 overlay.style.display = 'flex';
 
                 let timer = 10;
                 const timerEl = document.getElementById('countdown-timer');
 
-                const interval = setInterval(() => {
+                const interval = safeInterval(() => {
                     timer--;
                     timerEl.innerText = timer;
 
                     if (timer <= 0) {
                         clearInterval(interval);
+                        intervals.delete(interval);
                         finalizeDestruction();
                     }
                 }, 1000);
@@ -535,22 +585,27 @@ export default function NeuralInterface() {
 
         // Text Decryption Effect logic
         function decryptText(element, finalText) {
-            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
             let iterations = 0;
-            const interval = setInterval(() => {
+            const interval = safeInterval(() => {
                 element.innerText = finalText.split("")
                     .map((letter, index) => {
                         if (index < iterations) return finalText[index];
                         return chars[Math.floor(Math.random() * chars.length)];
                     }).join("");
 
-                if (iterations >= finalText.length) clearInterval(interval);
+                if (iterations >= finalText.length) {
+                    element.innerText = finalText; // ensure final render is exact
+                    clearInterval(interval);
+                    intervals.delete(interval);
+                }
                 iterations += 1 / 2;
             }, 30);
         }
 
         // --- RENDER LOOP ---
         function animate() {
+            if (destroyed) return;
             // Clear
             ctx.fillStyle = '#050505';
             ctx.fillRect(0, 0, width, height);
@@ -580,7 +635,7 @@ export default function NeuralInterface() {
             // Connect everything to center PERFIL
             if (nodes.length === 0) {
                 ctx.restore();
-                requestAnimationFrame(animate);
+                rafId = requestAnimationFrame(animate);
                 return;
             }
             const center = nodes[0];
@@ -652,7 +707,7 @@ export default function NeuralInterface() {
             });
 
             ctx.restore();
-            requestAnimationFrame(animate);
+            rafId = requestAnimationFrame(animate);
         }
 
         // Attach Event Listeners
@@ -663,7 +718,8 @@ export default function NeuralInterface() {
         if (btnPlay) btnPlay.addEventListener('click', toggleAudio);
 
         const volSlider = document.getElementById('vol-slider');
-        if (volSlider) volSlider.addEventListener('input', (e) => setVolume(e.target.value));
+        const onVolInput = (e) => setVolume(parseFloat(e.target.value));
+        if (volSlider) volSlider.addEventListener('input', onVolInput);
 
         const btnSpeed = document.getElementById('btn-speed');
         if (btnSpeed) btnSpeed.addEventListener('click', cycleSpeed);
@@ -674,32 +730,74 @@ export default function NeuralInterface() {
         const closeBtns = document.querySelectorAll('.close-btn');
         closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
 
+        // Close modal when clicking the dimmed background outside it.
+        const modalEl = document.getElementById('data-modal');
+        const onModalBackdrop = (e) => {
+            if (e.target === modalEl) closeModal();
+        };
+        if (modalEl) modalEl.addEventListener('click', onModalBackdrop);
+
+        // Global keyboard shortcuts: Escape closes modal, Enter boots when ready.
+        const onKeyDown = (e) => {
+            if (e.key === 'Escape' && state === 'MODAL') {
+                closeModal();
+            } else if (e.key === 'Enter' && state === 'BOOT') {
+                const btn = document.getElementById('start-btn');
+                if (btn && parseFloat(btn.style.opacity) > 0) bootSystem();
+            }
+        };
+        window.addEventListener('keydown', onKeyDown);
+
         // Start Boot
         runBootSequence();
 
         // Cleanup
         return () => {
+            destroyed = true;
+            if (rafId !== null) cancelAnimationFrame(rafId);
+            timeouts.forEach(id => clearTimeout(id));
+            timeouts.clear();
+            intervals.forEach(id => clearInterval(id));
+            intervals.clear();
+
             window.removeEventListener('resize', resize);
+            window.removeEventListener('keydown', onKeyDown);
+            canvas.removeEventListener('mousemove', onMouseMove);
+            canvas.removeEventListener('mouseleave', onMouseLeave);
+            canvas.removeEventListener('click', onCanvasClick);
+            canvas.removeEventListener('touchstart', onTouchStart);
+
             if (startBtn) startBtn.removeEventListener('click', bootSystem);
             if (btnPlay) btnPlay.removeEventListener('click', toggleAudio);
-            if (volSlider) volSlider.removeEventListener('input', setVolume);
+            if (volSlider) volSlider.removeEventListener('input', onVolInput);
             if (btnSpeed) btnSpeed.removeEventListener('click', cycleSpeed);
             if (btnMuteDestruct) btnMuteDestruct.removeEventListener('click', toggleDestructMute);
+            if (modalEl) modalEl.removeEventListener('click', onModalBackdrop);
             closeBtns.forEach(btn => btn.removeEventListener('click', closeModal));
+
+            // Reset residual DOM state in case the component remounts.
+            document.body.style.cursor = '';
+            document.body.classList.remove('destruct-mode');
+            try {
+                bgAudio.pause();
+                bgAudio.currentTime = 0;
+            } catch (_) { /* no-op */ }
+            if (SfxSys.ctx && typeof SfxSys.ctx.close === 'function') {
+                SfxSys.ctx.close().catch(() => {});
+            }
         };
     }, []);
 
     return (
         <>
             {/* AUDIO SOURCES */}
-            <audio id="bg-audio" loop>
+            <audio id="bg-audio" loop preload="metadata">
                 <source src="/Esteban_Rucán_IA_Generativa_impacto_negocio.m4a" type="audio/mp4" />
-                {/* Fallback or placeholder if file is missing/wrong format */}
             </audio>
 
             {/* CANVAS BACKGROUND */}
             <div id="canvas-container">
-                <canvas id="mainCanvas"></canvas>
+                <canvas id="mainCanvas" aria-label="Interfaz neural interactiva con nodos de portafolio" role="img"></canvas>
             </div>
 
             {/* BOOT SCREEN */}
@@ -738,9 +836,9 @@ export default function NeuralInterface() {
                     <div className="audio-player" style={{ marginTop: '15px', borderTop: '1px solid #333', paddingTop: '10px' }}>
                         <div style={{ fontSize: '9px', color: '#666', marginBottom: '5px' }}>AUDIO FEED: YOUR BEST CANDIDATE</div>
                         <div className="audio-controls-row">
-                            <button id="btn-play" className="ctrl-btn">▶</button>
-                            <input type="range" id="vol-slider" min="0" max="1" step="0.1" defaultValue="1" />
-                            <button id="btn-speed" className="ctrl-btn">1x</button>
+                            <button id="btn-play" className="ctrl-btn" aria-label="Reproducir o pausar audio">▶</button>
+                            <input type="range" id="vol-slider" min="0" max="1" step="0.1" defaultValue="0.5" aria-label="Volumen" />
+                            <button id="btn-speed" className="ctrl-btn" aria-label="Velocidad de reproducción">1x</button>
                         </div>
                     </div>
                 </div>
@@ -759,10 +857,10 @@ export default function NeuralInterface() {
             </div>
 
             {/* UNIVERSAL MODAL */}
-            <div id="data-modal">
+            <div id="data-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
                 <div className="modal-header">
                     <h2 id="modal-title" className="decrypt-target">DATA</h2>
-                    <button className="close-btn">CERRAR CONEXIÓN</button>
+                    <button className="close-btn" aria-label="Cerrar">CERRAR CONEXIÓN</button>
                 </div>
                 <div id="modal-body" className="modal-content">
                     {/* Content Injected via JS */}
