@@ -75,13 +75,13 @@ export default function NeuralInterface() {
                 title: "RESUMEN PROFESIONAL",
                 content: `
             <p style="margin-bottom:15px; font-size:1.1em; color:#fff;">
-                Soy un profesional con alto sentido de la responsabilidad y proactividad. Me considero una persona agradable para trabajar en equipo, siempre dispuesto a colaborar y brindar apoyo a quienes me rodean.
+                AI Engineer con más de 3 años llevando soluciones de Inteligencia Artificial, Machine Learning y Data Analytics a producción sobre Google Cloud Platform.
             </p>
             <p style="margin-bottom:15px;">
-                Destaco por una comunicación clara y empática, logrando involucrar eficazmente a stakeholders no técnicos, aumentando su confianza y fomentando la adopción de IA en sus procesos.
+                Especializado en <strong>IA Generativa, Agentes de IA, MLOps y NLP</strong>, con impacto demostrado en eficiencia operacional, ventas y calidad de servicio. Magíster en Ciencia de Datos (PUC) y Diplomado en Project Management (UAI).
             </p>
             <p>
-                Me apasiona la tecnología, y me encuentro en constante aprendizaje para mantenerme actualizado en las últimas tendencias y herramientas de la industria.
+                Me caracteriza la comunicación clara con stakeholders técnicos y no técnicos, facilitando la adopción de IA en organizaciones de distintos niveles de madurez digital.
             </p>
 
         `
@@ -91,14 +91,13 @@ export default function NeuralInterface() {
                 content: `
             <div class="card">
                 <div class="job-header">
-                    <div class="job-role">Data Scientist Engineer</div>
-                    <div class="job-meta">WOM Chile | Feb 2025 - Presente</div>
+                    <div class="job-role">AI Engineer</div>
+                    <div class="job-meta">WOM Chile | Feb 2025 – Presente</div>
                 </div>
                 <div class="job-desc">
                     <ul>
-                        <li>Desarrollé una solución de <strong>Speech Analytics end-to-end en GCP</strong> sobre las llamadas a Call-Center, usando Airflow, Gemini GenAI, BigQueryML y Power BI.</li>
-                        <li>Logré una <strong>reducción de 15 segundos</strong> del Tiempo Medio de Operación (TMO) de los ejecutivos y la obtención de una panorámica completa de la calidad de atención.</li>
-                        <li>Apoyé la creación de lineamientos técnicos para la implementación gobernada de soluciones basadas en <strong>Agentes de IA</strong> dentro de entornos Cloud.</li>
+                        <li>Diseñé y desplegué en producción una solución de <strong>Speech Analytics end-to-end en GCP</strong> (Airflow, Gemini, BigQuery ML, Power BI), entregando visibilidad completa sobre la calidad de atención del Call Center y logrando una reducción significativa en el Tiempo Medio de Operación.</li>
+                        <li>Co-definí lineamientos técnicos para la implementación gobernada de <strong>Agentes de IA</strong> en entornos Cloud, fortaleciendo estándares de arquitectura, trazabilidad y uso responsable.</li>
                     </ul>
                 </div>
             </div>
@@ -106,15 +105,13 @@ export default function NeuralInterface() {
             <div class="card">
                 <div class="job-header">
                     <div class="job-role">Data Analyst & Engineer</div>
-                    <div class="job-meta">ICB S.A. | Ene 2024 - Feb 2025</div>
+                    <div class="job-meta">ICB S.A. | Ene 2024 – Feb 2025</div>
                 </div>
                 <div class="job-desc">
                     <ul>
-                        <li>Entrené un modelo predictivo que mejoró la detección de anomalías de stock en camiones de autoventa en un <strong>63%</strong>.</li>
-                        <li>Desarrollé un <strong>Agente de IA</strong> para apoyo a las ventas de gestores comerciales, logrando un aumento del <strong>8% en ventas</strong> en el primer mes de adopción.</li>
-                        <li>Automaticé flujos <strong>MLOps</strong>, integrando modelos en Google Cloud con Docker y CI/CD para garantizar despliegues y mejoras continuas.</li>
-                        <li>Implementé flujos automatizados de ETL desde distintas fuentes, centralizándolos en un Data Warehouse en <strong>BigQuery</strong>.</li>
-                        <li>Impulsé la adopción de IA en la empresa mediante charlas para diversas áreas.</li>
+                        <li>Entrené un modelo predictivo que mejoró sustancialmente la detección de anomalías de stock en camiones de autoventa.</li>
+                        <li>Desarrollé y llevé a adopción un <strong>Agente de IA</strong> para apoyo comercial, con impacto positivo y medible en ventas desde su primer mes de uso.</li>
+                        <li>Automaticé flujos <strong>MLOps</strong> y pipelines ETL con Docker y CI/CD en Google Cloud, centralizando datos en <strong>BigQuery</strong> para operación analítica escalable.</li>
                     </ul>
                 </div>
             </div>
@@ -122,13 +119,24 @@ export default function NeuralInterface() {
             <div class="card">
                 <div class="job-header">
                     <div class="job-role">Data Scientist</div>
-                    <div class="job-meta">DATA UC | 2023</div>
+                    <div class="job-meta">DATA UC – Estudios y Servicios Estadísticos | 2023</div>
                 </div>
                 <div class="job-desc">
                     <ul>
-                        <li>Formé parte de un proyecto de inteligencia comercial que definió nuevas estrategias de pricing para programas de posgrado de la UC.</li>
-                        <li>Desarrollé scrapers y pipelines de datos para extraer información del mercado educativo, integrando datos con dashboards interactivos.</li>
-                        <li>Entrené modelos predictivos y usé técnicas de <strong>IA Generativa</strong> para apoyar decisiones en tiempo real acorde a las estrategias de la competencia.</li>
+                        <li>Desarrollé scrapers y pipelines de datos del mercado educativo, integrando resultados con dashboards interactivos para definir estrategias de pricing de programas de posgrado.</li>
+                        <li>Entrené modelos predictivos y apliqué técnicas de <strong>IA Generativa</strong> para apoyar decisiones estratégicas en tiempo real.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="job-header">
+                    <div class="job-role">Práctica Profesional – NLP</div>
+                    <div class="job-meta">Entel S.A. | 2022</div>
+                </div>
+                <div class="job-desc">
+                    <ul>
+                        <li>Desarrollé proyectos de análisis de sentimientos con técnicas de <strong>NLP</strong> para optimizar procesos de atención al cliente.</li>
                     </ul>
                 </div>
             </div>
@@ -138,31 +146,24 @@ export default function NeuralInterface() {
                 title: "DOCENCIA Y OTROS",
                 content: `
             <div class="card">
-                <div class="job-role">Relator de Seminarios</div>
-                <div class="job-meta">DUOC UC y UAI | 2024</div>
+                <div class="job-role">Relator e Impulsor de Adopción de IA</div>
+                <div class="job-meta">DUOC UC, UAI, ICB, WOM | 2024 – 2026</div>
                 <p class="job-desc" style="margin-top:5px;">
-                    Compartí mi experiencia en la implementación de soluciones de IA Generativa en la industria.
+                    Expositor en seminarios sobre IA Generativa en instituciones académicas e impulsor de adopción en entornos corporativos, adaptando el mensaje a distintos niveles técnicos y de madurez organizacional.
                 </p>
             </div>
             <div class="card">
-                <div class="job-role">Relator Curso Capacitación</div>
+                <div class="job-role">Instructor – Modelos Predictivos con Python</div>
                 <div class="job-meta">Tesorería General de la República | 2023</div>
                 <p class="job-desc" style="margin-top:5px;">
-                    Enseñé modelos predictivos para riesgo de crédito con Python a funcionarios.
+                    Instructor del curso de modelos predictivos de riesgo de crédito con Python para funcionarios públicos.
                 </p>
             </div>
             <div class="card">
-                <div class="job-role">Docencia Universitaria</div>
-                <div class="job-meta">Pontificia Universidad Católica | 2022 - 2024</div>
+                <div class="job-role">Docencia Universitaria – Analytics & Machine Learning</div>
+                <div class="job-meta">Pontificia Universidad Católica de Chile | 2022 – 2024</div>
                 <p class="job-desc" style="margin-top:5px;">
-                    Dirigí cursos de Analytics y Machine Learning con R y Python para estudiantes de pregrado y posgrado.
-                </p>
-            </div>
-            <div class="card">
-                <div class="job-role">Práctica Profesional</div>
-                <div class="job-meta">Entel S.A. | 2022</div>
-                <p class="job-desc" style="margin-top:5px;">
-                    Desarrollé dos proyectos de análisis de sentimientos para mejorar procesos de atención a clientes.
+                    Docente en cursos de Analytics y Machine Learning con R y Python para estudiantes de pregrado y diplomado.
                 </p>
             </div>
         `
@@ -170,44 +171,49 @@ export default function NeuralInterface() {
             "SKILLS": {
                 title: "ARSENAL TÉCNICO",
                 content: `
-            <h3 class="section-title">CORE TECHNOLOGIES</h3>
-            <span class="skill-tag highlight">Python (Avanzado)</span>
-            <span class="skill-tag highlight">SQL (Avanzado)</span>
-            <span class="skill-tag highlight">Google Cloud Platform (Avanzado)</span>
-            <span class="skill-tag">Docker (Intermedio)</span>
-            <span class="skill-tag">Git (Intermedio)</span>
-            <span class="skill-tag">Power BI (Intermedio)</span>
+            <h3 class="section-title">LENGUAJES Y HERRAMIENTAS</h3>
+            <span class="skill-tag highlight">Python</span>
+            <span class="skill-tag highlight">SQL</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Power BI</span>
 
-            <h3 class="section-title">INTELIGENCIA ARTIFICIAL</h3>
-            <span class="skill-tag highlight">GenAI</span>
+            <h3 class="section-title">CLOUD & MLOPS</h3>
+            <span class="skill-tag highlight">Google Cloud Platform</span>
+            <span class="skill-tag highlight">BigQuery</span>
+            <span class="skill-tag">Vertex AI</span>
+            <span class="skill-tag">Cloud Run</span>
+            <span class="skill-tag">Airflow</span>
+            <span class="skill-tag">CI/CD</span>
+
+            <h3 class="section-title">IA & MACHINE LEARNING</h3>
+            <span class="skill-tag highlight">IA Generativa</span>
+            <span class="skill-tag highlight">Agentes de IA</span>
             <span class="skill-tag highlight">RAG</span>
-            <span class="skill-tag highlight">Agentic AI</span>
-            <span class="skill-tag">LLMs (Gemini)</span>
-            <span class="skill-tag">MLOps</span>
+            <span class="skill-tag highlight">LLMs</span>
             <span class="skill-tag">NLP</span>
+            <span class="skill-tag">Speech Analytics</span>
+            <span class="skill-tag">Fine-Tuning</span>
+            <span class="skill-tag">MLOps</span>
             <span class="skill-tag">Deep Learning</span>
             <span class="skill-tag">Machine Learning</span>
+
+            <h3 class="section-title">DATOS</h3>
+            <span class="skill-tag">ETL / Data Pipelines</span>
+            <span class="skill-tag">Data Warehousing</span>
             <span class="skill-tag">Web Scraping</span>
-            
+            <span class="skill-tag">Análisis Estadístico</span>
+
             <h3 class="section-title">CERTIFICACIONES</h3>
             <ul style="list-style:none; color:#ccc; font-size:0.9em; line-height:1.8;">
                 <li>★ Generative AI Engineering, IBM (2025)</li>
                 <li>★ RAG and Agentic AI, IBM (2025)</li>
                 <li>★ Generative AI for Developers, AWS (2025)</li>
                 <li>★ Generative AI Leader, Google Cloud (2025)</li>
-                <li>• Data Scientist con Python, Platzi (2023)</li>
-                <li>• AWS Cloud Practitioner, Platzi (2023)</li>
-                <li>• Data Scientist Professional, DataCamp (2021)</li>
             </ul>
 
             <h3 class="section-title">IDIOMAS</h3>
-            <p style="color:#ccc;">Inglés Nivel B2 (Conversacional y Escrito)</p>
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px; margin-top:5px; font-size:0.8em; color:#888;">
-                <span>Reading: Intermedio</span>
-                <span>Writing: Intermedio</span>
-                <span>Speaking: Intermedio</span>
-                <span>Listening: Intermedio</span>
-            </div>
+            <p style="color:#ccc;">Español (nativo) &nbsp;|&nbsp; Inglés B2 – Competencia Profesional</p>
         `
             },
             "EDUCACION": {
@@ -215,7 +221,7 @@ export default function NeuralInterface() {
                 content: `
             <div class="card" style="border-left-color: var(--neon-cyan);">
                 <div class="job-role">Magíster en Ciencia de Datos</div>
-                <div class="job-meta">Pontificia Universidad Católica de Chile | 2023-2025</div>
+                <div class="job-meta">Pontificia Universidad Católica de Chile | 2023 – 2025</div>
             </div>
             <div class="card" style="border-left-color: var(--neon-cyan);">
                 <div class="job-role">Diplomado en Project Management</div>
@@ -223,7 +229,7 @@ export default function NeuralInterface() {
             </div>
             <div class="card" style="border-left-color: var(--neon-cyan);">
                 <div class="job-role">Estadística</div>
-                <div class="job-meta">Pontificia Universidad Católica de Chile | 2018-2022</div>
+                <div class="job-meta">Pontificia Universidad Católica de Chile | 2018 – 2022</div>
             </div>
         `
             }
