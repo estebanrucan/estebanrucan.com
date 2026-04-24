@@ -228,7 +228,7 @@ export default function NeuralInterface() {
                 <div class="job-meta">Universidad Adolfo Ibáñez | 2024</div>
             </div>
             <div class="card" style="border-left-color: var(--neon-cyan);">
-                <div class="job-role">Licenciatura en Estadística</div>
+                <div class="job-role">Estadística</div>
                 <div class="job-meta">Pontificia Universidad Católica de Chile | 2018 – 2022</div>
             </div>
         `
