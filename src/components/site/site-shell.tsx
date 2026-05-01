@@ -11,8 +11,11 @@ type SiteShellProps = {
 export function SiteShell({ children }: SiteShellProps) {
   return (
     <>
+      <a href="#main" className="skip-link">
+        Saltar al contenido
+      </a>
       <Header />
-      {children}
+      <div id="main">{children}</div>
       <CommandPalette />
       <ChatWidget />
     </>

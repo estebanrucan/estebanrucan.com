@@ -4,6 +4,14 @@ import type { ReactNode } from "react";
 import { SiteShell } from "@/components/site/site-shell";
 import "./globals.css";
 
+const themeInitScript = `(() => {
+  try {
+    const stored = localStorage.getItem("esteban-theme");
+    const theme = stored === "light" ? "light" : "dark";
+    document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();`;
+
 export const metadata: Metadata = {
   title: {
     default: "Esteban Rucán · AI Engineer",
@@ -30,6 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <SiteShell>{children}</SiteShell>
       </body>

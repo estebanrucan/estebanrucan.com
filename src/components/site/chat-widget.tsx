@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUp, MessageCircle, X } from "lucide-react";
 
@@ -24,10 +24,43 @@ export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const messagesRef = useRef<HTMLDivElement | null>(null);
 
   const latest = useMemo(() => messages[messages.length - 1], [messages]);
+  const hidden = pathname.startsWith("/casos/");
 
-  if (pathname.startsWith("/casos/")) {
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => inputRef.current?.focus(), 60);
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.clearTimeout(timeout);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+    const node = messagesRef.current;
+    if (node) {
+      node.scrollTop = node.scrollHeight;
+    }
+  }, [messages, open]);
+
+  if (hidden) {
     return null;
   }
 
@@ -72,7 +105,7 @@ export function ChatWidget() {
               <X size={18} aria-hidden="true" />
             </button>
           </header>
-          <div className="chat-panel__messages">
+          <div className="chat-panel__messages" ref={messagesRef}>
             {messages.map((message, index) => (
               <div key={`${message.role}-${index}`} className={`chat-message chat-message--${message.role}`}>
                 <p>{message.text}</p>
@@ -82,12 +115,13 @@ export function ChatWidget() {
           </div>
           <form className="chat-panel__form" onSubmit={onSubmit}>
             <input
+              ref={inputRef}
               value={input}
               onChange={(event) => setInput(event.target.value)}
               placeholder="Preguntar por Vertex AI, NLP, docencia..."
               aria-label="Pregunta para el CV"
             />
-            <button type="submit" aria-label="Enviar pregunta">
+            <button type="submit" aria-label="Enviar pregunta" disabled={!input.trim()}>
               <ArrowUp size={17} aria-hidden="true" />
             </button>
           </form>
@@ -95,9 +129,15 @@ export function ChatWidget() {
         </section>
       ) : null}
 
-      <button type="button" className="chat-trigger" onClick={() => setOpen((value) => !value)}>
+      <button
+        type="button"
+        className="chat-trigger"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+        aria-label={open ? "Cerrar chat con el CV" : "Abrir chat con el CV"}
+      >
         <MessageCircle size={21} aria-hidden="true" />
-        Habla con mi CV
+        <span className="chat-trigger__label">Habla con mi CV</span>
       </button>
     </div>
   );

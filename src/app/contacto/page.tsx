@@ -24,11 +24,11 @@ export default function ContactPage() {
             <Mail size={19} aria-hidden="true" />
             {contact.email}
           </a>
-          <Link href={contact.linkedin}>
+          <Link href={contact.linkedin} target="_blank" rel="noopener noreferrer">
             <ExternalLink size={18} aria-hidden="true" />
             LinkedIn
           </Link>
-          <Link href={contact.github}>
+          <Link href={contact.github} target="_blank" rel="noopener noreferrer">
             <Code2 size={19} aria-hidden="true" />
             GitHub
           </Link>
