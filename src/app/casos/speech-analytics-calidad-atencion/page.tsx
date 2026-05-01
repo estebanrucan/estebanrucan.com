@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 
 import { CaseArchitecture } from "@/components/site/case-architecture";
 import { ProfileVisual } from "@/components/site/profile-visual";
+import { ReadingProgress } from "@/components/site/reading-progress";
 import { profile, speechAnalyticsCase } from "@/content/site";
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function SpeechAnalyticsCasePage() {
 
   return (
     <main className="case-detail">
+      <ReadingProgress />
       <section className="case-detail-hero shell">
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Inicio</Link>

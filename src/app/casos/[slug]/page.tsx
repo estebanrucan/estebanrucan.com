@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
+import { ReadingProgress } from "@/components/site/reading-progress";
 import { caseStudies } from "@/content/site";
 
 type CasePageProps = {
@@ -33,6 +34,7 @@ export default async function GenericCasePage({ params }: CasePageProps) {
 
   return (
     <main className="case-detail">
+      <ReadingProgress />
       <section className="case-detail-hero shell">
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Inicio</Link>

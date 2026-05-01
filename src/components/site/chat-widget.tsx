@@ -19,6 +19,12 @@ const initialMessage: ChatMessage = {
   citation: "Sitio personal",
 };
 
+const quickReplies = [
+  "¿Has llevado IA a producción en GCP?",
+  "¿Tu experiencia en NLP?",
+  "¿Haces docencia?",
+];
+
 export function ChatWidget() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -29,6 +35,7 @@ export function ChatWidget() {
 
   const latest = useMemo(() => messages[messages.length - 1], [messages]);
   const hidden = pathname.startsWith("/casos/");
+  const showQuickReplies = messages.length === 1;
 
   useEffect(() => {
     if (!open) {
@@ -80,16 +87,19 @@ export function ChatWidget() {
     };
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const question = input.trim();
-
-    if (!question) {
+  function ask(question: string) {
+    const trimmed = question.trim();
+    if (!trimmed) {
       return;
     }
-
-    setMessages((current) => [...current, { role: "user", text: question }, answerFor(question)]);
+    setMessages((current) => [...current, { role: "user", text: trimmed }, answerFor(trimmed)]);
     setInput("");
+    inputRef.current?.focus();
+  }
+
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    ask(input);
   }
 
   return (
@@ -97,9 +107,18 @@ export function ChatWidget() {
       {open ? (
         <section className="chat-panel" aria-label="Habla con mi CV">
           <header className="chat-panel__header">
-            <div>
-              <strong>Habla con mi CV</strong>
-              <span>Criterio, casos y trayectoria.</span>
+            <div className="chat-panel__title">
+              <span className="chat-panel__avatar" aria-hidden="true">
+                ER
+                <span className="chat-panel__status" />
+              </span>
+              <div>
+                <strong>Habla con mi CV</strong>
+                <span>
+                  <span className="chat-panel__online-dot" aria-hidden="true" />
+                  En línea · Respuesta automática
+                </span>
+              </div>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Cerrar chat">
               <X size={18} aria-hidden="true" />
@@ -112,6 +131,21 @@ export function ChatWidget() {
                 {message.citation ? <small>{message.citation}</small> : null}
               </div>
             ))}
+            {showQuickReplies ? (
+              <div className="chat-quick-replies" role="list">
+                {quickReplies.map((reply) => (
+                  <button
+                    key={reply}
+                    type="button"
+                    className="chat-quick-reply"
+                    onClick={() => ask(reply)}
+                    role="listitem"
+                  >
+                    {reply}
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
           <form className="chat-panel__form" onSubmit={onSubmit}>
             <input
@@ -136,7 +170,10 @@ export function ChatWidget() {
         aria-expanded={open}
         aria-label={open ? "Cerrar chat con el CV" : "Abrir chat con el CV"}
       >
-        <MessageCircle size={21} aria-hidden="true" />
+        <span className="chat-trigger__icon" aria-hidden="true">
+          <MessageCircle size={20} />
+          <span className="chat-trigger__pulse" />
+        </span>
         <span className="chat-trigger__label">Habla con mi CV</span>
       </button>
     </div>

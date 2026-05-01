@@ -28,6 +28,31 @@ export function FadeIn({ children, className, delay = 0, as = "div" }: FadeInPro
   );
 }
 
+type RevealProps = {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  as?: "div" | "section" | "article" | "li";
+  amount?: number;
+};
+
+export function Reveal({ children, className, delay = 0, as = "div", amount = 0.2 }: RevealProps) {
+  const reduced = useReducedMotion();
+  const Component = motion[as];
+
+  return (
+    <Component
+      initial={reduced ? false : { opacity: 0, y: 24 }}
+      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount }}
+      transition={reduced ? { duration: 0 } : { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+      className={cn(className)}
+    >
+      {children}
+    </Component>
+  );
+}
+
 type InteractiveRowProps = {
   children: ReactNode;
   className?: string;
