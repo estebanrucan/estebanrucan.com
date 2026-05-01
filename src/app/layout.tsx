@@ -1,25 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 
 import { SiteShell } from "@/components/site/site-shell";
 import "./globals.css";
-
-const display = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
-
-const sans = Geist({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const mono = Geist_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -46,7 +29,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="es" data-theme="dark" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="es" data-theme="dark" suppressHydrationWarning>
       <body>
         <SiteShell>{children}</SiteShell>
       </body>

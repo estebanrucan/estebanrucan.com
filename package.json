@@ -4,9 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --debug",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit --pretty false",
+    "next:info": "next info"
+  },
+  "engines": {
+    "node": ">=20 <25",
+    "npm": ">=10"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
