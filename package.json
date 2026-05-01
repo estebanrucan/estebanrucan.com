@@ -11,7 +11,7 @@
     "next:info": "next info"
   },
   "engines": {
-    "node": ">=20 <25",
+    "node": "22.x",
     "npm": ">=10"
   },
   "dependencies": {
