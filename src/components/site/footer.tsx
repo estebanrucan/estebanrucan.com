@@ -17,11 +17,11 @@ export function Footer({ compact = false, className }: FooterProps) {
           <Mail size={18} aria-hidden="true" />
           {contact.email}
         </a>
-        <Link href={contact.linkedin} className="footer-link">
+        <Link href={contact.linkedin} className="footer-link" target="_blank" rel="noopener noreferrer">
           <ExternalLink size={17} aria-hidden="true" />
           LinkedIn
         </Link>
-        <Link href={contact.github} className="footer-link">
+        <Link href={contact.github} className="footer-link" target="_blank" rel="noopener noreferrer">
           <Code2 size={18} aria-hidden="true" />
           GitHub
         </Link>

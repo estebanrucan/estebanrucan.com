@@ -2,16 +2,32 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Command, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { routes } from "@/content/site";
 import { cn, isActivePath } from "@/lib/utils";
+import { COMMAND_PALETTE_EVENT } from "./command-palette";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [isMac, setIsMac] = useState(false);
+
+  useEffect(() => {
+    setIsMac(/Mac|iPhone|iPad/.test(navigator.platform));
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  function openPalette() {
+    window.dispatchEvent(new Event(COMMAND_PALETTE_EVENT));
+  }
+
+  const mainNav = routes.filter((route) => !route.href.includes("#"));
 
   return (
     <header className="site-header">
@@ -20,18 +36,35 @@ export function Header() {
       </Link>
 
       <nav className="desktop-nav" aria-label="Navegación principal">
-        {routes.map((route) => (
-          <Link
-            key={route.href}
-            href={route.href}
-            className={cn("nav-link", isActivePath(pathname, route.href) && "nav-link--active")}
-          >
-            {route.label}
-          </Link>
-        ))}
+        {mainNav.map((route) => {
+          const active = isActivePath(pathname, route.href);
+          return (
+            <Link
+              key={route.href}
+              href={route.href}
+              aria-current={active ? "page" : undefined}
+              className={cn("nav-link", active && "nav-link--active")}
+            >
+              {route.label}
+            </Link>
+          );
+        })}
       </nav>
 
       <div className="header-actions">
+        <button
+          type="button"
+          className="command-trigger"
+          onClick={openPalette}
+          aria-label="Abrir paleta de comandos"
+          title="Buscar y navegar"
+        >
+          <Command size={14} aria-hidden="true" />
+          <span className="command-trigger__keys" aria-hidden="true">
+            {isMac ? "⌘" : "Ctrl"}
+            <span>K</span>
+          </span>
+        </button>
         <div className="header-rule" aria-hidden="true" />
         <ThemeToggle />
         <button
@@ -47,16 +80,20 @@ export function Header() {
 
       {open ? (
         <div className="mobile-nav">
-          {routes.map((route) => (
-            <Link
-              key={route.href}
-              href={route.href}
-              className={cn("mobile-nav-link", isActivePath(pathname, route.href) && "mobile-nav-link--active")}
-              onClick={() => setOpen(false)}
-            >
-              {route.label}
-            </Link>
-          ))}
+          {mainNav.map((route) => {
+            const active = isActivePath(pathname, route.href);
+            return (
+              <Link
+                key={route.href}
+                href={route.href}
+                aria-current={active ? "page" : undefined}
+                className={cn("mobile-nav-link", active && "mobile-nav-link--active")}
+                onClick={() => setOpen(false)}
+              >
+                {route.label}
+              </Link>
+            );
+          })}
         </div>
       ) : null}
     </header>

@@ -7,12 +7,12 @@ const STORAGE_KEY = "esteban-theme";
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    const initial = stored === "light" ? "light" : "dark";
-    setTheme(initial);
-    document.documentElement.dataset.theme = initial;
+    const current = document.documentElement.dataset.theme === "light" ? "light" : "dark";
+    setTheme(current);
+    setMounted(true);
   }, []);
 
   function toggleTheme() {
@@ -22,20 +22,26 @@ export function ThemeToggle() {
     window.localStorage.setItem(STORAGE_KEY, nextTheme);
   }
 
+  const isLight = theme === "light";
+
   return (
     <button
       type="button"
       className="theme-toggle"
+      data-theme-state={isLight ? "light" : "dark"}
       onClick={toggleTheme}
-      aria-label={theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-      title={theme === "dark" ? "Modo claro" : "Modo oscuro"}
+      aria-label={isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro"}
+      aria-pressed={isLight}
+      title={isLight ? "Modo oscuro" : "Modo claro"}
+      suppressHydrationWarning
     >
-      <Sun className="theme-toggle__icon" aria-hidden="true" />
-      <span className="theme-toggle__knob">
-        {theme === "dark" ? (
-          <Moon size={15} strokeWidth={1.7} aria-hidden="true" />
+      <Sun className="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true" />
+      <Moon className="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true" />
+      <span className="theme-toggle__knob" aria-hidden="true">
+        {mounted && isLight ? (
+          <Sun size={14} strokeWidth={1.8} aria-hidden="true" />
         ) : (
-          <Sun size={15} strokeWidth={1.7} aria-hidden="true" />
+          <Moon size={14} strokeWidth={1.8} aria-hidden="true" />
         )}
       </span>
     </button>

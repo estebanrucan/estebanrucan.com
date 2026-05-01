@@ -60,7 +60,7 @@ export default function TeachingPage() {
             Escribirme
             <ArrowRight size={20} aria-hidden="true" />
           </Link>
-          <Link href={contact.linkedin} className="button button--ghost">
+          <Link href={contact.linkedin} className="button button--ghost" target="_blank" rel="noopener noreferrer">
             Ver LinkedIn
             <ExternalLink size={18} aria-hidden="true" />
           </Link>
