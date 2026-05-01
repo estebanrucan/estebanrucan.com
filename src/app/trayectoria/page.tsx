@@ -1,6 +1,8 @@
+import { Reveal } from "@/components/site/animated";
 import { Footer } from "@/components/site/footer";
 import { AccentHeading } from "@/components/site/section-heading";
 import { timeline } from "@/content/site";
+import { cn } from "@/lib/utils";
 
 export const metadata = {
   title: "Trayectoria",
@@ -26,19 +28,34 @@ export default function TrajectoryPage() {
             concretos, no para adornar presentaciones.
           </p>
 
-          <div className="timeline">
-            {timeline.map((entry) => (
-              <article className="timeline-item" key={`${entry.company}-${entry.period}`}>
-                <div className="timeline-period">{entry.period}</div>
-                <div className="timeline-content">
-                  <h2>{entry.company}</h2>
-                  <span>{entry.role}</span>
-                  <p>{entry.context}</p>
-                  <p>{entry.summary}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <ol className="timeline">
+            {timeline.map((entry, index) => {
+              const isCurrent = index === 0;
+              return (
+                <Reveal
+                  as="li"
+                  className={cn("timeline-item", isCurrent && "timeline-item--current")}
+                  key={`${entry.company}-${entry.period}`}
+                  delay={index * 0.06}
+                >
+                  <div className="timeline-period">
+                    {isCurrent ? (
+                      <span className="timeline-badge" aria-label="Actual">
+                        Actual
+                      </span>
+                    ) : null}
+                    {entry.period}
+                  </div>
+                  <div className="timeline-content">
+                    <h2>{entry.company}</h2>
+                    <span>{entry.role}</span>
+                    <p>{entry.context}</p>
+                    <p>{entry.summary}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </ol>
         </div>
 
         <aside className="trajectory-aside">
