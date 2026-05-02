@@ -31,6 +31,14 @@ export type TimelineEntry = {
   summary: string;
 };
 
+export type EducationEntry = {
+  period: string;
+  institution: string;
+  shortName: string;
+  degree: string;
+  focus: string;
+};
+
 export type CaseStudy = {
   number: string;
   slug: string;
@@ -161,6 +169,30 @@ export const timeline: TimelineEntry[] = [
     role: "Práctica profesional - NLP",
     context: "Procesamiento de lenguaje natural aplicado a atención al cliente.",
     summary: "Desarrollé análisis de sentimientos para optimizar procesos de atención.",
+  },
+];
+
+export const education: EducationEntry[] = [
+  {
+    period: "2024",
+    institution: "Universidad Adolfo Ibáñez",
+    shortName: "UAI",
+    degree: "Diplomado en Project Management",
+    focus: "Gestión de proyectos, planificación y entrega de iniciativas técnicas con foco en valor.",
+  },
+  {
+    period: "2023 – 2025",
+    institution: "Pontificia Universidad Católica de Chile",
+    shortName: "PUC",
+    degree: "Magíster en Ciencia de Datos",
+    focus: "Profundización en machine learning, MLOps e IA aplicada a problemas reales.",
+  },
+  {
+    period: "2018 – 2022",
+    institution: "Pontificia Universidad Católica de Chile",
+    shortName: "PUC",
+    degree: "Estadística",
+    focus: "Base sólida en inferencia, modelamiento y análisis cuantitativo.",
   },
 ];
 

@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/site/animated";
 import { Footer } from "@/components/site/footer";
 import { AccentHeading } from "@/components/site/section-heading";
-import { timeline } from "@/content/site";
+import { education, timeline } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
@@ -76,6 +76,34 @@ export default function TrajectoryPage() {
             </p>
           </div>
         </aside>
+      </section>
+
+      <section className="education shell" aria-labelledby="education-title">
+        <div className="education__head">
+          <p className="section-kicker">Formación académica</p>
+          <h2 id="education-title">De la estadística a la ciencia de datos.</h2>
+        </div>
+
+        <ol className="education-list">
+          {education.map((entry, index) => (
+            <Reveal
+              as="li"
+              className="education-item"
+              key={`${entry.institution}-${entry.period}`}
+              delay={index * 0.06}
+            >
+              <div className="education-item__period">{entry.period}</div>
+              <div className="education-item__content">
+                <h3>{entry.degree}</h3>
+                <span>
+                  {entry.institution}
+                  <small> · {entry.shortName}</small>
+                </span>
+                <p>{entry.focus}</p>
+              </div>
+            </Reveal>
+          ))}
+        </ol>
       </section>
 
       <Footer className="shell" compact />
