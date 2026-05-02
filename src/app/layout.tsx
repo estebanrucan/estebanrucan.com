@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import { SiteShell } from "@/components/site/site-shell";
@@ -11,6 +11,16 @@ const themeInitScript = `(() => {
     document.documentElement.dataset.theme = theme;
   } catch (_) {}
 })();`;
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#070b0d" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f0e8" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: {
