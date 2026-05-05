@@ -4,43 +4,77 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUp, MessageCircle, X } from "lucide-react";
 
-import { chatKnowledge } from "@/content/site";
-
 type ChatMessage = {
   role: "assistant" | "user";
   text: string;
-  citation?: string;
 };
+
+const STORAGE_KEY = "esteban-chat-session";
 
 const initialMessage: ChatMessage = {
   role: "assistant",
   text:
-    "Hola. Soy una versión breve de mi CV dentro del sitio. Puedo responder sobre experiencia en IA, NLP, MLOps, docencia y casos.",
-  citation: "Sitio personal",
+    "Hola. Soy una versión interactiva de mi CV. Puedo responder sobre mi experiencia en IA, NLP, MLOps, docencia y casos.",
 };
 
 const quickReplies = [
   "¿Has llevado IA a producción en GCP?",
-  "¿Tu experiencia en NLP?",
+  "¿Cuál es tu experiencia en NLP?",
   "¿Haces docencia?",
 ];
+
+function loadStoredMessages(): ChatMessage[] | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return null;
+    return parsed.filter(
+      (item): item is ChatMessage =>
+        item && (item.role === "assistant" || item.role === "user") && typeof item.text === "string",
+    );
+  } catch {
+    return null;
+  }
+}
 
 export function ChatWidget() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const messagesRef = useRef<HTMLDivElement | null>(null);
+  const hydrated = useRef(false);
 
-  const latest = useMemo(() => messages[messages.length - 1], [messages]);
+  const showQuickReplies = useMemo(
+    () => messages.length === 1 && !pending,
+    [messages.length, pending],
+  );
   const hidden = pathname.startsWith("/casos/");
-  const showQuickReplies = messages.length === 1;
 
   useEffect(() => {
-    if (!open) {
-      return;
+    const stored = loadStoredMessages();
+    if (stored && stored.length > 0) {
+      setMessages(stored);
     }
+    hydrated.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated.current) return;
+    try {
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    } catch {
+      // sessionStorage may be unavailable (private mode); silently ignore.
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (!open) return;
 
     const timeout = window.setTimeout(() => inputRef.current?.focus(), 60);
 
@@ -58,48 +92,60 @@ export function ChatWidget() {
   }, [open]);
 
   useEffect(() => {
-    if (!open) {
-      return;
-    }
+    if (!open) return;
     const node = messagesRef.current;
     if (node) {
       node.scrollTop = node.scrollHeight;
     }
-  }, [messages, open]);
+  }, [messages, open, pending]);
 
   if (hidden) {
     return null;
   }
 
-  function answerFor(question: string): ChatMessage {
-    const normalized = question.toLowerCase();
-    const hit = chatKnowledge.find((item) => item.intent.some((word) => normalized.includes(word)));
-
-    if (hit) {
-      return { role: "assistant", text: hit.answer, citation: hit.citation };
-    }
-
-    return {
-      role: "assistant",
-      text:
-        "Lo más honesto: si la pregunta es sobre mi forma de trabajar, parto por entender el problema de negocio, decido qué no conviene construir y recién después elijo la tecnología. En el sitio lo puedes ver especialmente en Casos y Cómo pienso.",
-      citation: "Cómo pienso · Casos",
-    };
-  }
-
-  function ask(question: string) {
+  async function ask(question: string) {
     const trimmed = question.trim();
-    if (!trimmed) {
-      return;
-    }
-    setMessages((current) => [...current, { role: "user", text: trimmed }, answerFor(trimmed)]);
+    if (!trimmed || pending) return;
+
+    setError(null);
     setInput("");
-    inputRef.current?.focus();
+
+    const nextMessages: ChatMessage[] = [...messages, { role: "user", text: trimmed }];
+    setMessages(nextMessages);
+    setPending(true);
+
+    const history = nextMessages
+      .slice(0, -1)
+      .filter((m) => m !== initialMessage)
+      .map((m) => ({ role: m.role === "assistant" ? "model" : "user", text: m.text }));
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ message: trimmed, history }),
+      });
+
+      const data = (await response.json().catch(() => null)) as { text?: string; error?: string } | null;
+
+      if (!response.ok || !data?.text) {
+        const message = data?.error ?? "No pude responder ahora. Intenta de nuevo en un momento.";
+        setError(message);
+        return;
+      }
+
+      setMessages((current) => [...current, { role: "assistant", text: data.text! }]);
+    } catch {
+      setError("No pude conectar con el chat. Revisa tu conexión e intenta de nuevo.");
+    } finally {
+      setPending(false);
+      inputRef.current?.focus();
+    }
   }
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    ask(input);
+    void ask(input);
   }
 
   return (
@@ -116,7 +162,7 @@ export function ChatWidget() {
                 <strong>Habla con mi CV</strong>
                 <span>
                   <span className="chat-panel__online-dot" aria-hidden="true" />
-                  En línea · Respuesta automática
+                  En línea · Respuestas con Gemini
                 </span>
               </div>
             </div>
@@ -128,9 +174,23 @@ export function ChatWidget() {
             {messages.map((message, index) => (
               <div key={`${message.role}-${index}`} className={`chat-message chat-message--${message.role}`}>
                 <p>{message.text}</p>
-                {message.citation ? <small>{message.citation}</small> : null}
               </div>
             ))}
+            {pending ? (
+              <div className="chat-message chat-message--assistant chat-message--typing" aria-live="polite">
+                <span className="chat-typing" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+                <span className="chat-typing__sr">Escribiendo respuesta…</span>
+              </div>
+            ) : null}
+            {error ? (
+              <div className="chat-message chat-message--error" role="alert">
+                <p>{error}</p>
+              </div>
+            ) : null}
             {showQuickReplies ? (
               <div className="chat-quick-replies" role="list">
                 {quickReplies.map((reply) => (
@@ -138,7 +198,7 @@ export function ChatWidget() {
                     key={reply}
                     type="button"
                     className="chat-quick-reply"
-                    onClick={() => ask(reply)}
+                    onClick={() => void ask(reply)}
                     role="listitem"
                   >
                     {reply}
@@ -154,12 +214,15 @@ export function ChatWidget() {
               onChange={(event) => setInput(event.target.value)}
               placeholder="Preguntar por Vertex AI, NLP, docencia..."
               aria-label="Pregunta para el CV"
+              disabled={pending}
             />
-            <button type="submit" aria-label="Enviar pregunta" disabled={!input.trim()}>
+            <button type="submit" aria-label="Enviar pregunta" disabled={!input.trim() || pending}>
               <ArrowUp size={17} aria-hidden="true" />
             </button>
           </form>
-          <p className="chat-panel__hint">{latest.citation}</p>
+          <p className="chat-panel__hint">
+            La conversación se guarda solo mientras esta pestaña esté abierta.
+          </p>
         </section>
       ) : null}
 
