@@ -17,7 +17,7 @@ Vengo de la estadística. Hoy soy AI Engineer en Santiago, Chile, con más de 3 
 
 EXPERIENCIA
 - WOM Chile · AI Engineer (Feb. 2025–Presente): diseñé y desplegué Speech Analytics end-to-end en GCP usando Airflow, Gemini, BigQuery ML y Power BI. También co-definí lineamientos técnicos para el uso gobernado de IA en entornos Cloud.
-- ICB S.A. · Data Analyst & Engineer (Ene. 2024–Feb. 2025): modelos predictivos para detección de anomalías de stock y un agente de IA de apoyo comercial que impactó ventas desde el primer mes. Pipelines MLOps y ETL con Docker, CI/CD y BigQuery.
+- ICB S.A. · Data Analyst & Engineer (Ene. 2024–Feb. 2025): modelos predictivos para detección de anomalías de stock y un agente de IA de apoyo comercial. Pipelines MLOps y ETL con Docker, CI/CD y BigQuery.
 - DATA UC · Data Scientist (2023): scrapers, dashboards y modelos para decisiones de pricing en programas de posgrado.
 - Entel · Práctica NLP (2022): análisis de sentimientos aplicado a atención al cliente.
 
