@@ -1506,6 +1506,13 @@ button {
   max-width: 760px;
 }
 
+.cases-disclaimer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--muted-soft);
+  letter-spacing: 0.015em;
+}
+
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));

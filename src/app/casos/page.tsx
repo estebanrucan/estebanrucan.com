@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Footer } from "@/components/site/footer";
 import { Reveal } from "@/components/site/animated";
-import { caseStudies } from "@/content/site";
+import { caseStudies, casesPage } from "@/content/site";
 
 export const metadata = {
   title: "Casos",
@@ -21,6 +21,7 @@ export default function CasesPage() {
           No busco mostrar tecnología por mostrar. Muestro el tipo de problema, la decisión que tomé y por qué ese
           enfoque tuvo sentido.
         </p>
+        <p className="cases-disclaimer">{casesPage.disclaimer}</p>
       </section>
 
       <section className="cases-grid shell" aria-label="Casos de éxito">
