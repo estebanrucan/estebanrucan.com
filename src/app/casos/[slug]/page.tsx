@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 import { ReadingProgress } from "@/components/site/reading-progress";
-import { caseStudies } from "@/content/site";
+import { caseStudies, casesPage } from "@/content/site";
 
 type CasePageProps = {
   params: Promise<{ slug: string }>;
@@ -48,6 +48,7 @@ export default async function GenericCasePage({ params }: CasePageProps) {
             <p className="section-kicker">{item.eyebrow}</p>
             <h1>{item.title}</h1>
             <p>{item.intro}</p>
+            <p className="cases-disclaimer">{casesPage.disclaimer}</p>
           </div>
         </div>
       </section>

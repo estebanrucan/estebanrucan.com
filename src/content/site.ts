@@ -196,6 +196,11 @@ export const education: EducationEntry[] = [
   },
 ];
 
+export const casesPage = {
+  disclaimer:
+    "Los casos muestran decisiones técnicas reales. Datos de clientes y métricas exactas están omitidos por confidencialidad.",
+};
+
 export const caseStudies: CaseStudy[] = [
   {
     number: "01",

@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { CaseArchitecture } from "@/components/site/case-architecture";
 import { ProfileVisual } from "@/components/site/profile-visual";
 import { ReadingProgress } from "@/components/site/reading-progress";
-import { profile, speechAnalyticsCase } from "@/content/site";
+import { casesPage, profile, speechAnalyticsCase } from "@/content/site";
 
 export const metadata = {
   title: "Speech Analytics para calidad de atención",
@@ -29,6 +29,7 @@ export default function SpeechAnalyticsCasePage() {
             <p className="section-kicker">{speechAnalyticsCase.eyebrow}</p>
             <h1>{speechAnalyticsCase.title}</h1>
             <p>{speechAnalyticsCase.intro}</p>
+            <p className="cases-disclaimer">{casesPage.disclaimer}</p>
           </div>
           <div className="case-author">
             <ProfileVisual variant="compact" showCaption={false} />
