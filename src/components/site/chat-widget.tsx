@@ -14,13 +14,13 @@ const STORAGE_KEY = "esteban-chat-session";
 const initialMessage: ChatMessage = {
   role: "assistant",
   text:
-    "Hola. Soy una versión interactiva de mi CV. Puedo responder sobre mi experiencia en IA, NLP, MLOps, docencia y casos.",
+    "Hola. Puedo contarte sobre mi experiencia en IA, los proyectos que he llevado a producción o cómo pienso sobre tecnología y negocio. ¿Por dónde empezamos?",
 };
 
 const quickReplies = [
-  "¿Has llevado IA a producción en GCP?",
-  "¿Cuál es tu experiencia en NLP?",
-  "¿Haces docencia?",
+  "¿Qué diferencia una demo de un producto real?",
+  "¿Cómo llevas IA a adopción en una empresa?",
+  "¿Qué has aprendido enseñando IA?",
 ];
 
 function loadStoredMessages(): ChatMessage[] | null {
